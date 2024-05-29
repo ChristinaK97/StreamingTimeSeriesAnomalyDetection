@@ -139,9 +139,9 @@ class OnlineAD:
         self.errors = []
         self.Y_hat = []
         self.pred_buffer = []
-        self.mov_train = CapacityQueue(self.Wtrain)
-        self.mov_drift = CapacityQueue(self.Wdrift)
-        self.ref_drift = CapacityQueue(self.Wdrift)
+        self.mov_increm = CapacityQueue(self.Wtrain)
+        self.mov_drift  = CapacityQueue(self.Wdrift)
+        self.ref_drift  = CapacityQueue(self.Wdrift)
 
         self.parse_stream()
         self.get_predictions()
@@ -222,17 +222,17 @@ class OnlineAD:
 
 
     def incremental_training(self, timestamp, xt):
-        self.mov_train.push(xt)
-        if self.mov_train.isFull() or self.mov_train.percentage_replaced() >= self.incremental_cutoff:
+        self.mov_increm.push(xt)
+        if self.mov_increm.isFull() or self.mov_increm.percentage_replaced() >= self.incremental_cutoff:
 
             if len(self.pred_buffer) > self.sequence_length:
                 print(f"Predict buffer with {len(self.pred_buffer)} before incremental step")
                 self.predict_model(self.pred_buffer, True)
                 self.pred_buffer = []
 
-            print(f"Incremental training with {len(self.mov_train)} samples at timestamp = {timestamp}")
-            self.fit_model(self.mov_train.queue, False)
-            self.mov_train.reset()
+            print(f"Incremental training with {len(self.mov_increm)} samples at timestamp = {timestamp}")
+            self.fit_model(self.mov_increm.queue, False)
+            self.mov_increm.reset()
 
 
 
@@ -257,7 +257,7 @@ class OnlineAD:
                 self.fit_model(self.mov_drift.queue, True)
                 self.ref_drift.reset()
                 self.mov_drift.reset()
-                self.mov_train.reset()
+                self.mov_increm.reset()
             else:
                 self.ref_drift.copy_from(self.mov_drift)
                 self.mov_drift.reset()

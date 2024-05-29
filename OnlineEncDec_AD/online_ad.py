@@ -30,18 +30,18 @@ percentile_cutoff: int = 90,
 ks_significance_level: float = 0.01
 
 Accuarcy: 0.88405
-AUC: 0.7114369049290203
-AUC PR: 0.12788454258677923
-[[68808  7517]
- [ 1759  1916]]
+AUC: 0.7175235688772724
+AUC PR: 0.13145938724812903
+[[68761  7564]
+ [ 1712  1963]]
               precision    recall  f1-score   support
 
-      normal     0.9751    0.9015    0.9369     76325
-     anamoly     0.2031    0.5214    0.2923      3675
+      normal     0.9757    0.9009    0.9368     76325
+     anamoly     0.2060    0.5341    0.2974      3675
 
     accuracy                         0.8841     80000
-   macro avg     0.5891    0.7114    0.6146     80000
-weighted avg     0.9396    0.8841    0.9072     80000
+   macro avg     0.5909    0.7175    0.6171     80000
+weighted avg     0.9404    0.8841    0.9074     80000
 """
 
 device = current_device() if is_available() else None
@@ -129,9 +129,9 @@ class OnlineAD:
         self.percentile_cutoff = percentile_cutoff
         self.ks_significance_level = ks_significance_level
 
+        self.X, self.Y = None, None
         self.sequence_length = None
         self.n_features = None
-        self.stream = None
         self.model = None
         self.theta_t = None
         self.initialize(df)
@@ -157,11 +157,10 @@ class OnlineAD:
         self.n_features = X.shape[1]
 
         self.sequence_length = find_length(X[0])
-        X_init_train, Y_init_train, _, _, X, Y = separate_sets(X, Y, train_perc=0.2, val_perc=0)
+        X_init_train, Y_init_train, _, _, self.X, self.Y = separate_sets(X, Y, train_perc=0.2, val_perc=0)
 
         print(f"Initializing model with {X_init_train.shape[0]} samples...")
         self.fit_model(X_init_train, True)
-        self.stream = create_stream(X, Y)
 
 
     def fit_model(self, X, reset_model: bool):
@@ -203,25 +202,22 @@ class OnlineAD:
 
     # -------------------------------------------------------------------------------------------------
     def parse_stream(self):
-        timestamp = -1
-        for batch_idx, (X_stream_batch, Y_stream_batch) in enumerate(self.stream):
+        
+        for (t, xt), (_, yt) in zip(self.X.iterrows(), self.Y.items()):
+            
+            self.pred_buffer.append(xt)
+            if self.X.shape[0] - t > self.sequence_length:  # at least one sequence should remain in the stream
+                self.incremental_training(t, xt)
+                self.concept_drift_detection(t, xt)
 
-            for (point_idx, xt), (_, yt) in zip(X_stream_batch.iterrows(), Y_stream_batch.items()):
-                timestamp += 1
-                self.pred_buffer.append(xt)
-
-                if X_stream_batch.shape[0] - point_idx > self.sequence_length:  # at least one sequence should remain in the batch
-                    self.incremental_training(timestamp, xt)
-                    self.concept_drift_detection(timestamp, xt)
-
-            if len(self.pred_buffer) > 0:
-                print(f"Predict last buffer with {len(self.pred_buffer)} when stream batch {batch_idx} is finished at timestamp = {timestamp}")
-                self.predict_model(self.pred_buffer, True)
-                self.pred_buffer = []
+        if len(self.pred_buffer) > 0:
+            print(f"Predict last buffer with {len(self.pred_buffer)} before finish")
+            self.predict_model(self.pred_buffer, True)
+            self.pred_buffer = []
 
 
 
-    def incremental_training(self, timestamp, xt):
+    def incremental_training(self, t, xt):
         self.mov_increm.push(xt)
         if self.mov_increm.isFull() or self.mov_increm.percentage_replaced() >= self.incremental_cutoff:
 
@@ -230,13 +226,13 @@ class OnlineAD:
                 self.predict_model(self.pred_buffer, True)
                 self.pred_buffer = []
 
-            print(f"Incremental training with {len(self.mov_increm)} samples at timestamp = {timestamp}")
+            print(f"Incremental training with {len(self.mov_increm)} samples at t = {t}")
             self.fit_model(self.mov_increm.queue, False)
             self.mov_increm.reset()
 
 
 
-    def concept_drift_detection(self, timestamp, xt):
+    def concept_drift_detection(self, t, xt):
         if not self.ref_drift.isFull():
             self.ref_drift.push(xt)
         elif not self.mov_drift.isFull():
@@ -244,10 +240,10 @@ class OnlineAD:
         else:
             ref_loss = self.predict_model(self.ref_drift.queue, False)
             mov_loss = self.predict_model(self.mov_drift.queue, False)
-            drift_detected = self.check_for_drift(ref_loss, mov_loss, timestamp)
+            drift_detected = self.check_for_drift(ref_loss, mov_loss, t)
 
             if drift_detected:
-                print(f"Drift detected at timestamp {timestamp}")
+                print(f"Drift detected at t = {t}")
 
                 if len(self.pred_buffer) > self.sequence_length:
                     print(f"Predict buffer with {len(self.pred_buffer)} before drift reset step")
@@ -263,13 +259,13 @@ class OnlineAD:
                 self.mov_drift.reset()
 
 
-    def check_for_drift(self, ref_loss: np.ndarray, mov_loss: np.ndarray, timestamp:int):
+    def check_for_drift(self, ref_loss: np.ndarray, mov_loss: np.ndarray, t:int):
         """:return: 
             True:  The two distributions are significantly different (reject H0).
             False: The two distributions are not significantly different (fail to reject H0).
         """""
         ks_statistic, p_value = ks_2samp(ref_loss.ravel(), mov_loss.ravel())
-        print(f"Checked for drift p-value = {p_value} at timestamp = {timestamp}")
+        print(f"Checked for drift p-value = {p_value} at t = {t}")
         return p_value < self.ks_significance_level
 
 
@@ -291,21 +287,20 @@ class OnlineAD:
         
         
     def results(self):
-        Y_true = pd.concat([stream_batch[1] for stream_batch in self.stream], ignore_index=True)
-
+        
         target_names = ['normal', 'anamoly']
-        print("Accuarcy: " + str(accuracy_score(Y_true, self.Y_hat)))
-        print("AUC: " + str(roc_auc_score(Y_true, self.Y_hat)))
-        print("AUC PR: " + str(average_precision_score(Y_true, self.Y_hat)))
-        print(confusion_matrix(Y_true, self.Y_hat))
-        print(classification_report(Y_true, self.Y_hat, target_names=target_names, digits=4))
+        print("Accuarcy: " + str(accuracy_score(self.Y, self.Y_hat)))
+        print("AUC: " + str(roc_auc_score(self.Y, self.Y_hat)))
+        print("AUC PR: " + str(average_precision_score(self.Y, self.Y_hat)))
+        print(confusion_matrix(self.Y, self.Y_hat))
+        print(classification_report(self.Y, self.Y_hat, target_names=target_names, digits=4))
 
         return {'name': self.name,
-                'Accuarcy': str(accuracy_score(Y_true, self.Y_hat)),
-                'AUC': str(roc_auc_score(Y_true, self.Y_hat)),
-                'AUC PR': str(average_precision_score(Y_true, self.Y_hat)),
-                'confusion matrix': confusion_matrix(Y_true, self.Y_hat),
-                'report': (classification_report(Y_true, self.Y_hat, target_names=target_names, digits=4, output_dict=True))}
+                'Accuarcy': str(accuracy_score(self.Y, self.Y_hat)),
+                'AUC': str(roc_auc_score(self.Y, self.Y_hat)),
+                'AUC PR': str(average_precision_score(self.Y, self.Y_hat)),
+                'confusion matrix': confusion_matrix(self.Y, self.Y_hat),
+                'report': (classification_report(self.Y, self.Y_hat, target_names=target_names, digits=4, output_dict=True))}
 
     # -------------------------------------------------------------------------------------------------
 

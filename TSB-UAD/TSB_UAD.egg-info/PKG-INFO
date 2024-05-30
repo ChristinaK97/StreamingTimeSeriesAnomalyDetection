@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: TSB-UAD
+Version: 0.0.1
+Summary: Time Series Anomaly Detection Benchmark
+Home-page: https://github.com/TheDatumOrg/TSB-UAD
+Author: Teja
+Author-email: tejabogireddy19@gmail.com
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+
+UNKNOWN
+

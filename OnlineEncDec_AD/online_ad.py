@@ -54,6 +54,30 @@ AUC PR: 0.13145938724812903
 weighted avg     0.9404    0.8841    0.9074     80000
 """
 
+"""
+Added MAX BUFFER SIZE 2000
+stream_batch_size: int = 10000,
+Wtrain: int = 1000, Wdrift: int = 200,
+incremental_cutoff: int = 50,
+percentile_cutoff: int = 90,
+ks_significance_level: float = 0.01
+
+Accuarcy: 0.8866875
+AUC: 0.7181287949179016
+AUC PR: 0.13348443490035738
+[[68978  7347]
+ [ 1718  1957]]
+              precision    recall  f1-score   support
+
+      normal     0.9757    0.9037    0.9383     76325
+     anamoly     0.2103    0.5325    0.3016      3675
+
+    accuracy                         0.8867     80000
+   macro avg     0.5930    0.7181    0.6200     80000
+weighted avg     0.9405    0.8867    0.9091     80000
+"""
+
+
 device = current_device() if is_available() else None
 print(f"Device = {device}")
 
@@ -133,6 +157,7 @@ class OnlineAD:
 
     TRAINING_EPOCHS = 40
     INCREMENTAL_TRAINING_EPOCHS = 10
+    MAX_BUFFER_LEN = 2000
 
     def __init__(self,
                  df: pd.DataFrame,
@@ -228,6 +253,11 @@ class OnlineAD:
             
             self.pred_buffer.push(xt, t)
 
+            if len(self.pred_buffer) > OnlineAD.MAX_BUFFER_LEN:
+                print(f"Predict buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)}) since full")
+                self.predict_model(self.pred_buffer, True)
+                self.pred_buffer.reset()
+
             if self.X.shape[0] - t > self.sequence_length:  # at least one sequence should remain in the stream
                 self.incremental_training(t, xt)
                 self.concept_drift_detection(t, xt)
@@ -242,11 +272,6 @@ class OnlineAD:
     def incremental_training(self, t, xt):
         self.mov_increm.push(xt, t)
         if self.mov_increm.isFull() or self.mov_increm.percentage_replaced() >= self.incremental_cutoff:
-
-            if len(self.pred_buffer) > self.sequence_length:
-                print(f"Predict buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)}) before incremental step")
-                self.predict_model(self.pred_buffer, True)
-                self.pred_buffer.reset()
 
             print(f"Incremental training {self.mov_increm.show_indexes()} (# {len(self.mov_increm)}) at t = {t}")
             self.printObjects()

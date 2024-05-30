@@ -13,7 +13,7 @@ from sklearn.metrics import confusion_matrix
 from TSB_UAD.utils.slidingWindows import find_length
 from torch.cuda import current_device, is_available
 
-from OnlineEncDec_AD.OnlineEncDecAD import OnlineEncDecAD
+from OnlineEncDec_AD.enc_dec_ad import EncDecAD
 from tstENCDEC import separate_sets, ECG, load_dataset, base_path
 
 from scipy.stats import ks_2samp
@@ -55,46 +55,48 @@ weighted avg     0.9404    0.8841    0.9074     80000
 """
 
 """
-Added MAX BUFFER SIZE 2000
+Version 2.0: Predict only ref_drift with outdated model
+------------
+Worst results than Base Version 1
+
 stream_batch_size: int = 10000,
 Wtrain: int = 1000, Wdrift: int = 200,
 incremental_cutoff: int = 50,
 percentile_cutoff: int = 90,
 ks_significance_level: float = 0.01
 
-Accuarcy: 0.8866875
-AUC: 0.7181287949179016
-AUC PR: 0.13348443490035738
-[[68978  7347]
- [ 1718  1957]]
+Accuarcy: 0.8806125
+AUC: 0.6378904657178954
+AUC PR: 0.08760713692453725
+[[69087  7238]
+ [ 2313  1362]]
               precision    recall  f1-score   support
 
-      normal     0.9757    0.9037    0.9383     76325
-     anamoly     0.2103    0.5325    0.3016      3675
+      normal     0.9676    0.9052    0.9353     76325
+     anamoly     0.1584    0.3706    0.2219      3675
 
-    accuracy                         0.8867     80000
-   macro avg     0.5930    0.7181    0.6200     80000
-weighted avg     0.9405    0.8867    0.9091     80000
+    accuracy                         0.8806     80000
+   macro avg     0.5630    0.6379    0.5786     80000
+weighted avg     0.9304    0.8806    0.9026     80000
 
----------------------------------
-Wtrain: int = 500, Wdrift: int = 500,
 
-Accuarcy: 0.893975
-AUC: 0.7032994868435419
-AUC PR: 0.1293361091347484
-[[69705  6620]
- [ 1862  1813]]
+ks_significance_level: float = 0.001
+
+Accuarcy: 0.8751625
+AUC: 0.6624889982196613
+AUC PR: 0.09752498723590916
+[[68439  7886]
+ [ 2101  1574]]
               precision    recall  f1-score   support
 
-      normal     0.9740    0.9133    0.9426     76325
-     anamoly     0.2150    0.4933    0.2995      3675
+      normal     0.9702    0.8967    0.9320     76325
+     anamoly     0.1664    0.4283    0.2397      3675
 
-    accuracy                         0.8940     80000
-   macro avg     0.5945    0.7033    0.6211     80000
-weighted avg     0.9391    0.8940    0.9131     80000
+    accuracy                         0.8752     80000
+   macro avg     0.5683    0.6625    0.5858     80000
+weighted avg     0.9333    0.8752    0.9002     80000
 
 """
-
 
 device = current_device() if is_available() else None
 print(f"Device = {device}")
@@ -141,6 +143,19 @@ class CapacityQueue:
         self.total_elements = other.total_elements
         self.replaced_elements = other.replaced_elements
 
+    def extend(self, other):
+        if isinstance(other, CapacityQueue):
+            self.queue.extend(other.queue)
+            self.index_queue.extend(other.index_queue)
+            self.total_elements += other.total_elements
+            self.replaced_elements += self.replaced_elements
+
+        elif isinstance(other, pd.DataFrame):
+            for (t, xt) in other.iterrows():
+                self.push(xt, t)
+            self.total_elements += other.shape[0]
+
+
     def show_indexes(self):
         return show_indexes(self.index_queue)
 
@@ -152,6 +167,14 @@ def show_indexes(l):
         return f"[{l[0]} - {l[-1]}]"
     else:
         return "Empty"
+
+def check_consistency(l):
+    is_consistent = True
+    for i in range(1, len(l)):
+        if l[i] != l[i - 1] + 1:
+            is_consistent = False
+            print(f"i = {i} [i-1] = {l[i - 1]} [i] = {l[i]}")
+    return is_consistent
 
 
 def create_stream(X, Y, stream_batch_size: int = 10000) -> List[Tuple[pd.DataFrame, pd.Series]]:
@@ -183,7 +206,7 @@ class OnlineAD:
                  Wincrem: int = 1000, Wdrift: int = 200,
                  incremental_cutoff: int = 50,
                  percentile_cutoff: int = 90,
-                 ks_significance_level: float = 0.01
+                 ks_significance_level: float = 0.001
                  ):
         self.name = "OnlineEncDecAD"
         self.Wincrem = Wincrem
@@ -201,6 +224,7 @@ class OnlineAD:
 
         self.errors = []
         self.Y_hat = []
+        self.predicted_idxs = []
         self.pred_buffer= CapacityQueue(OnlineAD.MAX_BUFFER_LEN)
         self.mov_increm = CapacityQueue(self.Wincrem, True)
         self.mov_drift  = CapacityQueue(self.Wdrift)
@@ -230,7 +254,7 @@ class OnlineAD:
     def fit_model(self, X: Union[pd.DataFrame, CapacityQueue], reset_model: bool):
 
         if reset_model:
-            self.model = OnlineEncDecAD(
+            self.model = EncDecAD(
                 n_features = self.n_features,
                 hidden_size = 32,
                 sequence_length = self.sequence_length,
@@ -252,6 +276,9 @@ class OnlineAD:
 
 
     def predict_model(self, X: Union[pd.DataFrame, CapacityQueue], is_output: bool):
+        if is_output:
+            idxs = X.index_queue
+
         X = self.toDF(X)
 
         _, loss = self.model.predict(X, batch_size = self.get_batch_size(X))
@@ -260,28 +287,27 @@ class OnlineAD:
         if is_output:
             self.errors.append(loss)
             self.Y_hat.append(Y_hat)
+            self.predicted_idxs.extend(idxs)
 
         return loss
 
 
     # -------------------------------------------------------------------------------------------------
     def parse_stream(self):
-        
+
         for (t, xt), (_, yt) in zip(self.X.iterrows(), self.Y.items()):
-            
-            self.pred_buffer.push(xt, t)
-
-            if self.pred_buffer.isFull():
-                print(f"Predict buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)}) since full")
-                self.predict_model(self.pred_buffer, True)
-                self.pred_buffer.reset()
-
             if self.X.shape[0] - t > self.sequence_length:  # at least one sequence should remain in the stream
                 self.incremental_training(t, xt)
                 self.concept_drift_detection(t, xt)
+            else:
+                print("\nProcessing last sequence at t = ", t)
+                self.pred_buffer.extend(self.ref_drift)
+                self.pred_buffer.extend(self.mov_drift)
+                self.pred_buffer.extend(self.X.iloc[t:])
+                break
 
         if len(self.pred_buffer) > 0:
-            print(f"Predict last buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)}) before finish")
+            print(f"Predict last buffer {self.pred_buffer.show_indexes()} {str(check_consistency(self.pred_buffer.index_queue))}  (# {len(self.pred_buffer)}) before finish")
             self.predict_model(self.pred_buffer, True)
             self.pred_buffer.reset()
 
@@ -310,26 +336,37 @@ class OnlineAD:
             drift_detected = self.check_for_drift(ref_loss, mov_loss, t)
 
             if drift_detected:
-                print(f"Drift detected at t = {t}")
-                self.printObjects()
 
-                if len(self.pred_buffer) > self.sequence_length:
-                    print(f"Predict buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)})  before drift reset step")
-                    self.predict_model(self.pred_buffer, True)
-                    self.pred_buffer.reset()
+                print(f"Drift detected at t = {t}")
+
+                self.pred_buffer.extend(self.ref_drift)
+                print(f"Predict buffer {self.pred_buffer.show_indexes()} {str(check_consistency(self.pred_buffer.index_queue))}  (# {len(self.pred_buffer)})  before drift reset step")
+                self.predict_model(self.pred_buffer, True)
+
+                self.pred_buffer.reset()
+                self.pred_buffer.extend(self.mov_drift)
+                self.pred_buffer.push(xt, t)
+
 
                 self.fit_model(self.mov_drift, True)
                 self.ref_drift.reset()
                 self.mov_drift.reset()
                 self.mov_increm.reset()
             else:
-                prev = self.ref_drift.show_indexes()
+                prev = self.ref_drift.show_indexes() + " " + str(check_consistency(self.ref_drift.index_queue))
+
+                self.pred_buffer.extend(self.ref_drift)
+                if self.pred_buffer.isFull():
+                    print(f"Predict buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)}) since full")
+                    self.predict_model(self.pred_buffer, True)
+                    self.pred_buffer.reset()
 
                 self.ref_drift.copy_from(self.mov_drift)
                 self.mov_drift.reset()
+                self.mov_drift.push(xt, t)
 
                 print(f"No Drift at t = {t}")
-                self.printObjects("Before " + prev)
+                self.printObjects("Before: " + prev)
 
 
 
@@ -362,6 +399,10 @@ class OnlineAD:
     def get_predictions(self):
         self.errors = np.concatenate(self.errors, axis=1).ravel()
         self.Y_hat  = np.concatenate(self.Y_hat, axis=1).ravel()
+
+        print(len(self.errors), len(self.Y_hat), len(self.predicted_idxs))
+        print(show_indexes(self.predicted_idxs), check_consistency(self.predicted_idxs))
+
         
         
     def results(self):
@@ -381,12 +422,12 @@ class OnlineAD:
                 'report': (classification_report(self.Y, self.Y_hat, target_names=target_names, digits=4, output_dict=True))}
 
     # -------------------------------------------------------------------------------------------------
-
     def printObjects(self, message= None):
-        print(f"\tref_drift : {self.ref_drift.show_indexes()} \t# {len(self.ref_drift)}\t {message}")
-        print(f"\tmov_drift : {self.mov_drift.show_indexes()} \t# {len(self.mov_drift)}")
-        print(f"\tmov_incre : {self.mov_increm.show_indexes()} \t# {len(self.mov_increm)}")
-        print(f"\tpred_buff : {self.pred_buffer.show_indexes()} \t# {len(self.pred_buffer)}")
+        print(f"\tref_drift : {self.ref_drift.show_indexes()} {str(check_consistency(self.ref_drift.index_queue))} \t# {len(self.ref_drift)} \t{message}")
+        print(f"\tmov_drift : {self.mov_drift.show_indexes()} {str(check_consistency(self.mov_drift.index_queue))} \t# {len(self.mov_drift)}")
+        print(f"\tmov_incre : {self.mov_increm.show_indexes()} {str(check_consistency(self.mov_increm.index_queue))} \t# {len(self.mov_increm)}")
+        print(f"\tpred_buff : {self.pred_buffer.show_indexes()} {str(check_consistency(self.pred_buffer.index_queue))}\t# {len(self.pred_buffer)}")
+
 
 
 

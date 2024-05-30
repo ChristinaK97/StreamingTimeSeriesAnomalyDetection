@@ -5,8 +5,8 @@ Mining from Massive Datasets Assignment
 StreamingTimeSeriesAnomalyDetection (base directory) <br>
 |-- TSB-UAD (cloned from the original [github repo](https://github.com/TheDatumOrg/TSB-UAD/)) <br>
 |-- TSB-UAD-Public (public datasets from the TSB benchmark) <br>
-|-- EncDec-AD (files copied from the [original repo](https://github.com/KDD-OpenSource/DeepADoTS/tree/master) - modified) <br>
-|-- streaming_anomaly_detection (cloned from the [original repo](https://github.com/redsofa/streaming_anomaly_detection)) <br>
+|-- EncDec-AD (contains files copied from the [original repo](https://github.com/KDD-OpenSource/DeepADoTS/tree/master) - modified) <br>
+|-- redsofa_online_ae_lstm (cloned from the [original repo](https://github.com/redsofa/streaming_anomaly_detection)) <br>
 |-- StreamingAnomalyDetectionNotebook.ipynb (draft project notebook) <br>
 
 

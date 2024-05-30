@@ -19,6 +19,16 @@ from tstENCDEC import separate_sets, ECG, load_dataset, base_path
 from scipy.stats import ks_2samp
 
 
+import random
+import torch
+random.seed(42)
+np.random.seed(42)
+torch.manual_seed(42)
+torch.cuda.manual_seed(42)
+torch.cuda.manual_seed_all(42)
+torch.backends.cudnn.benchmark = False
+torch.backends.cudnn.deterministic = True
+
 """
 Base version
 ------------
@@ -52,6 +62,7 @@ class CapacityQueue:
         self.replaced_elements = None
         self.total_elements = None
         self.queue = None
+        self.index_queue = None
 
         self.queue_capacity = queue_capacity  # Maximum capacity of the queue
         self.reset()
@@ -61,14 +72,16 @@ class CapacityQueue:
 
     def reset(self):
         self.queue = deque(maxlen=self.queue_capacity)  # Initialize deque with a fixed size
+        self.index_queue = deque(maxlen=self.queue_capacity)
         self.total_elements = 0  # Total elements added
         self.replaced_elements = 0  # Number of elements replaced
 
-    def push(self, x):
+    def push(self, x, t):
         if len(self.queue) == self.queue_capacity:
             # If the queue is full, increment replaced_elements
             self.replaced_elements += 1
         self.queue.append(x)
+        self.index_queue.append(t)
         self.total_elements += 1
 
     def isFull(self):
@@ -81,13 +94,21 @@ class CapacityQueue:
 
     def copy_from(self, other):
         self.queue = deque(other.queue, maxlen=other.queue_capacity)
+        self.index_queue = deque(other.index_queue, maxlen=other.queue_capacity)
         self.total_elements = other.total_elements
         self.replaced_elements = other.replaced_elements
 
+    def show_indexes(self):
+        return show_indexes(self.index_queue)
 
 
 
 
+def show_indexes(l):
+    if len(l) > 0:
+        return f"[{l[0]} - {l[-1]}]"
+    else:
+        return "Empty"
 
 
 def create_stream(X, Y, stream_batch_size: int = 10000) -> List[Tuple[pd.DataFrame, pd.Series]]:
@@ -138,7 +159,7 @@ class OnlineAD:
 
         self.errors = []
         self.Y_hat = []
-        self.pred_buffer = []
+        self.pred_buffer= CapacityQueue(10000)
         self.mov_increm = CapacityQueue(self.Wtrain)
         self.mov_drift  = CapacityQueue(self.Wdrift)
         self.ref_drift  = CapacityQueue(self.Wdrift)
@@ -163,7 +184,7 @@ class OnlineAD:
         self.fit_model(X_init_train, True)
 
 
-    def fit_model(self, X, reset_model: bool):
+    def fit_model(self, X: Union[pd.DataFrame, CapacityQueue], reset_model: bool):
 
         if reset_model:
             self.model = OnlineEncDecAD(
@@ -180,14 +201,14 @@ class OnlineAD:
         self.model.fit(X, epochs, batch_size = self.get_batch_size(X))
         _, train_loss = self.model.predict(X)
         self.theta_t = self.calc_percentile(train_loss)
-        print(f"New theta_t = {self.theta_t}")
+        print(f"New theta_t = {self.theta_t}\n{'-'*30}")
 
     def calc_percentile(self, loss):
         return np.percentile(loss, self.percentile_cutoff, interpolation='linear')
 
 
 
-    def predict_model(self, X: Union[List, pd.DataFrame, deque], is_output: bool):
+    def predict_model(self, X: Union[pd.DataFrame, CapacityQueue], is_output: bool):
         X = self.toDF(X)
 
         _, loss = self.model.predict(X, batch_size = self.get_batch_size(X))
@@ -205,58 +226,75 @@ class OnlineAD:
         
         for (t, xt), (_, yt) in zip(self.X.iterrows(), self.Y.items()):
             
-            self.pred_buffer.append(xt)
+            self.pred_buffer.push(xt, t)
+
             if self.X.shape[0] - t > self.sequence_length:  # at least one sequence should remain in the stream
                 self.incremental_training(t, xt)
                 self.concept_drift_detection(t, xt)
 
         if len(self.pred_buffer) > 0:
-            print(f"Predict last buffer with {len(self.pred_buffer)} before finish")
+            print(f"Predict last buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)}) before finish")
             self.predict_model(self.pred_buffer, True)
-            self.pred_buffer = []
+            self.pred_buffer.reset()
 
 
 
     def incremental_training(self, t, xt):
-        self.mov_increm.push(xt)
+        self.mov_increm.push(xt, t)
         if self.mov_increm.isFull() or self.mov_increm.percentage_replaced() >= self.incremental_cutoff:
 
             if len(self.pred_buffer) > self.sequence_length:
-                print(f"Predict buffer with {len(self.pred_buffer)} before incremental step")
+                print(f"Predict buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)}) before incremental step")
                 self.predict_model(self.pred_buffer, True)
-                self.pred_buffer = []
+                self.pred_buffer.reset()
 
-            print(f"Incremental training with {len(self.mov_increm)} samples at t = {t}")
-            self.fit_model(self.mov_increm.queue, False)
+            print(f"Incremental training {self.mov_increm.show_indexes()} (# {len(self.mov_increm)}) at t = {t}")
+            print(f"\tref_drift : {self.ref_drift.show_indexes()} \t# {len(self.ref_drift)}")
+            print(f"\tmov_drift : {self.mov_drift.show_indexes()} \t# {len(self.mov_drift)}")
+            print(f"\tmov_incre : {self.mov_increm.show_indexes()} \t# {len(self.mov_increm)}")
+            print(f"\tpred_buff : {self.pred_buffer.show_indexes()} \t# {len(self.pred_buffer)}")
+
+            self.fit_model(self.mov_increm, False)
             self.mov_increm.reset()
 
 
 
     def concept_drift_detection(self, t, xt):
         if not self.ref_drift.isFull():
-            self.ref_drift.push(xt)
+            self.ref_drift.push(xt, t)
         elif not self.mov_drift.isFull():
-            self.mov_drift.push(xt)
+            self.mov_drift.push(xt, t)
         else:
-            ref_loss = self.predict_model(self.ref_drift.queue, False)
-            mov_loss = self.predict_model(self.mov_drift.queue, False)
+            ref_loss = self.predict_model(self.ref_drift, False)
+            mov_loss = self.predict_model(self.mov_drift, False)
             drift_detected = self.check_for_drift(ref_loss, mov_loss, t)
 
             if drift_detected:
                 print(f"Drift detected at t = {t}")
+                print(f"\tref_drift : {self.ref_drift.show_indexes()} \t# {len(self.ref_drift)}")
+                print(f"\tmov_drift : {self.mov_drift.show_indexes()} \t# {len(self.mov_drift)}")
+                print(f"\tmov_incre : {self.mov_increm.show_indexes()} \t# {len(self.mov_increm)}")
+                print(f"\tpred_buff : {self.pred_buffer.show_indexes()} \t# {len(self.pred_buffer)}")
 
                 if len(self.pred_buffer) > self.sequence_length:
-                    print(f"Predict buffer with {len(self.pred_buffer)} before drift reset step")
+                    print(f"Predict buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)})  before drift reset step")
                     self.predict_model(self.pred_buffer, True)
-                    self.pred_buffer = []
+                    self.pred_buffer.reset()
 
-                self.fit_model(self.mov_drift.queue, True)
+                self.fit_model(self.mov_drift, True)
                 self.ref_drift.reset()
                 self.mov_drift.reset()
                 self.mov_increm.reset()
             else:
+                prev = self.ref_drift.show_indexes()
                 self.ref_drift.copy_from(self.mov_drift)
                 self.mov_drift.reset()
+                print(f"No Drift at t = {t}")
+                print(f"\tref_drift : {self.ref_drift.show_indexes()} \t# {len(self.ref_drift)}\t Before: {prev}")
+                print(f"\tmov_drift : {self.mov_drift.show_indexes()} \t# {len(self.mov_drift)}")
+                print(f"\tmov_incre : {self.mov_increm.show_indexes()} \t# {len(self.mov_increm)}")
+                print(f"\tpred_buff : {self.pred_buffer.show_indexes()} \t# {len(self.pred_buffer)}")
+
 
 
     def check_for_drift(self, ref_loss: np.ndarray, mov_loss: np.ndarray, t:int):
@@ -272,9 +310,13 @@ class OnlineAD:
     # -------------------------------------------------------------------------------------------------
 
     def toDF(self, X):
-        if not isinstance(X, pd.DataFrame):
-            return pd.DataFrame(X)
-        return X
+        if isinstance(X, pd.DataFrame):
+            return X
+        elif isinstance(X, CapacityQueue):
+            return pd.DataFrame(X.queue)
+        else:
+            ValueError(f"Invalid x type: {type(X)}")\
+
 
     def get_batch_size(self, X):
         data_len = X.shape[0] if isinstance(X, pd.DataFrame) else len(X)
@@ -317,7 +359,7 @@ def load_tst_set():
     current_script_path = current_script_path[0:i]
 
     filenames = [str(Path(current_script_path, base_path, ECG))]
-    return load_dataset(filenames, sample_size=100000)
+    return load_dataset(filenames, sample_size=20000)
 
 
 df, _, _ = load_tst_set()

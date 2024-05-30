@@ -75,6 +75,24 @@ AUC PR: 0.13348443490035738
     accuracy                         0.8867     80000
    macro avg     0.5930    0.7181    0.6200     80000
 weighted avg     0.9405    0.8867    0.9091     80000
+
+---------------------------------
+Wtrain: int = 500, Wdrift: int = 500,
+
+Accuarcy: 0.893975
+AUC: 0.7032994868435419
+AUC PR: 0.1293361091347484
+[[69705  6620]
+ [ 1862  1813]]
+              precision    recall  f1-score   support
+
+      normal     0.9740    0.9133    0.9426     76325
+     anamoly     0.2150    0.4933    0.2995      3675
+
+    accuracy                         0.8940     80000
+   macro avg     0.5945    0.7033    0.6211     80000
+weighted avg     0.9391    0.8940    0.9131     80000
+
 """
 
 
@@ -82,26 +100,27 @@ device = current_device() if is_available() else None
 print(f"Device = {device}")
 
 class CapacityQueue:
-    def __init__(self, queue_capacity):
+    def __init__(self, queue_capacity, with_replacement=False):
         self.replaced_elements = None
         self.total_elements = None
         self.queue = None
         self.index_queue = None
 
         self.queue_capacity = queue_capacity  # Maximum capacity of the queue
+        self.with_replacement = with_replacement
         self.reset()
 
     def __len__(self):
         return len(self.queue)
 
     def reset(self):
-        self.queue = deque(maxlen=self.queue_capacity)  # Initialize deque with a fixed size
-        self.index_queue = deque(maxlen=self.queue_capacity)
+        self.queue = deque(maxlen=self.queue_capacity if self.with_replacement else None)  # Initialize deque with a fixed size
+        self.index_queue = deque(maxlen=self.queue_capacity if self.with_replacement else None)
         self.total_elements = 0  # Total elements added
         self.replaced_elements = 0  # Number of elements replaced
 
     def push(self, x, t):
-        if len(self.queue) == self.queue_capacity:
+        if self.with_replacement and len(self.queue) == self.queue_capacity:
             # If the queue is full, increment replaced_elements
             self.replaced_elements += 1
         self.queue.append(x)
@@ -161,15 +180,13 @@ class OnlineAD:
 
     def __init__(self,
                  df: pd.DataFrame,
-                 stream_batch_size: int = 10000,
-                 Wtrain: int = 1000, Wdrift: int = 200,
+                 Wincrem: int = 1000, Wdrift: int = 200,
                  incremental_cutoff: int = 50,
                  percentile_cutoff: int = 90,
                  ks_significance_level: float = 0.01
-        ):
+                 ):
         self.name = "OnlineEncDecAD"
-        self.stream_batch_size = stream_batch_size
-        self.Wtrain = Wtrain
+        self.Wincrem = Wincrem
         self.Wdrift = Wdrift
         self.incremental_cutoff = incremental_cutoff
         self.percentile_cutoff = percentile_cutoff
@@ -184,8 +201,8 @@ class OnlineAD:
 
         self.errors = []
         self.Y_hat = []
-        self.pred_buffer= CapacityQueue(10000)
-        self.mov_increm = CapacityQueue(self.Wtrain)
+        self.pred_buffer= CapacityQueue(OnlineAD.MAX_BUFFER_LEN)
+        self.mov_increm = CapacityQueue(self.Wincrem, True)
         self.mov_drift  = CapacityQueue(self.Wdrift)
         self.ref_drift  = CapacityQueue(self.Wdrift)
 
@@ -203,6 +220,7 @@ class OnlineAD:
         self.n_features = X.shape[1]
 
         self.sequence_length = find_length(X[0])
+        print("Seq len = ", self.sequence_length)
         X_init_train, Y_init_train, _, _, self.X, self.Y = separate_sets(X, Y, train_perc=0.2, val_perc=0)
 
         print(f"Initializing model with {X_init_train.shape[0]} samples...")
@@ -253,7 +271,7 @@ class OnlineAD:
             
             self.pred_buffer.push(xt, t)
 
-            if len(self.pred_buffer) > OnlineAD.MAX_BUFFER_LEN:
+            if self.pred_buffer.isFull():
                 print(f"Predict buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)}) since full")
                 self.predict_model(self.pred_buffer, True)
                 self.pred_buffer.reset()

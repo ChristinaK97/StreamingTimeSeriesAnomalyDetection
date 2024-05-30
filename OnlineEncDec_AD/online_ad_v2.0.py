@@ -102,26 +102,27 @@ device = current_device() if is_available() else None
 print(f"Device = {device}")
 
 class CapacityQueue:
-    def __init__(self, queue_capacity):
+    def __init__(self, queue_capacity, with_replacement=False):
         self.replaced_elements = None
         self.total_elements = None
         self.queue = None
         self.index_queue = None
 
         self.queue_capacity = queue_capacity  # Maximum capacity of the queue
+        self.with_replacement = with_replacement
         self.reset()
 
     def __len__(self):
         return len(self.queue)
 
     def reset(self):
-        self.queue = deque(maxlen=self.queue_capacity)  # Initialize deque with a fixed size
-        self.index_queue = deque(maxlen=self.queue_capacity)
+        self.queue = deque(maxlen=self.queue_capacity if self.with_replacement else None)  # Initialize deque with a fixed size
+        self.index_queue = deque(maxlen=self.queue_capacity if self.with_replacement else None)
         self.total_elements = 0  # Total elements added
         self.replaced_elements = 0  # Number of elements replaced
 
     def push(self, x, t):
-        if len(self.queue) == self.queue_capacity:
+        if self.with_replacement and len(self.queue) == self.queue_capacity:
             # If the queue is full, increment replaced_elements
             self.replaced_elements += 1
         self.queue.append(x)
@@ -198,18 +199,17 @@ class OnlineAD:
 
     TRAINING_EPOCHS = 40
     INCREMENTAL_TRAINING_EPOCHS = 10
+    MAX_BUFFER_LEN = 2000
 
     def __init__(self,
                  df: pd.DataFrame,
-                 stream_batch_size: int = 10000,
-                 Wtrain: int = 1000, Wdrift: int = 200,
+                 Wincrem: int = 1000, Wdrift: int = 200,
                  incremental_cutoff: int = 50,
                  percentile_cutoff: int = 90,
                  ks_significance_level: float = 0.001
-        ):
+                 ):
         self.name = "OnlineEncDecAD"
-        self.stream_batch_size = stream_batch_size
-        self.Wtrain = Wtrain
+        self.Wincrem = Wincrem
         self.Wdrift = Wdrift
         self.incremental_cutoff = incremental_cutoff
         self.percentile_cutoff = percentile_cutoff
@@ -225,8 +225,8 @@ class OnlineAD:
         self.errors = []
         self.Y_hat = []
         self.predicted_idxs = []
-        self.pred_buffer= CapacityQueue(10000)
-        self.mov_increm = CapacityQueue(self.Wtrain)
+        self.pred_buffer= CapacityQueue(OnlineAD.MAX_BUFFER_LEN)
+        self.mov_increm = CapacityQueue(self.Wincrem, True)
         self.mov_drift  = CapacityQueue(self.Wdrift)
         self.ref_drift  = CapacityQueue(self.Wdrift)
 
@@ -357,6 +357,7 @@ class OnlineAD:
 
                 self.pred_buffer.extend(self.ref_drift)
                 if self.pred_buffer.isFull():
+                    print(f"Predict buffer {self.pred_buffer.show_indexes()}  (# {len(self.pred_buffer)}) since full")
                     self.predict_model(self.pred_buffer, True)
                     self.pred_buffer.reset()
 

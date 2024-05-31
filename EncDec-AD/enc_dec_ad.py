@@ -41,7 +41,7 @@ class EncDecAD(Algorithm, PyTorchUtils):
 
 
 
-    def fit(self, X: pd.DataFrame, num_epochs: int = 10, batch_size: int = 20):
+    def fit(self, X: pd.DataFrame, num_epochs: int = 10, batch_size: int = 20, show_progress_bar:bool = True):
 
         X.interpolate(inplace=True)
         X.bfill(inplace=True)
@@ -58,7 +58,8 @@ class EncDecAD(Algorithm, PyTorchUtils):
         optimizer = torch.optim.Adam(self.lstmed.parameters(), lr=self.lr)
 
         self.lstmed.train()
-        for epoch in trange(num_epochs):
+        epoch_range = trange(num_epochs) if show_progress_bar else range(num_epochs)
+        for epoch in epoch_range:
             logging.debug(f'Epoch {epoch+1}/{num_epochs}.')
             for ts_batch in train_loader:
                 output = self.lstmed(self.to_var(ts_batch))

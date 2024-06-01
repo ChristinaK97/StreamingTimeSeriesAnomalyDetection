@@ -1,0 +1,22 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 1,
+    "datasets": [
+        "MGAB/1.test.out"
+    ],
+    "series_length": 80000,
+    "window": 49,
+    "AUC": 0.6767233082706767,
+    "Precision": 0.011106997408367271,
+    "Recall": 0.15,
+    "F": 0.020682523267838676,
+    "Precision@k": 0.15,
+    "Rprecision": 0.011014582686937637,
+    "Rrecall": 0.2,
+    "Rf": 0.02087928245846199,
+    "ExistenceReward": 0.4,
+    "OverlapReward": 0.15,
+    "RAUC": 0.7782447145491,
+    "time": 311.92256212234497
+}

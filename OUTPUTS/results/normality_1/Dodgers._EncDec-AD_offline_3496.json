@@ -1,0 +1,22 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 1,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out"
+    ],
+    "series_length": 40320,
+    "window": 288,
+    "AUC": 0.4967177029155738,
+    "Precision": 0.03624733475479744,
+    "Recall": 0.007255655142979087,
+    "F": 0.012091038406827882,
+    "Precision@k": 0.007255655142979087,
+    "Rprecision": 0.032741792369121565,
+    "Rrecall": 0.035347862869914676,
+    "Rf": 0.03399495511369282,
+    "ExistenceReward": 0.15315315315315314,
+    "OverlapReward": 0.005896540299105051,
+    "RAUC": 0.8318615467174798,
+    "time": 185.8985984325409
+}

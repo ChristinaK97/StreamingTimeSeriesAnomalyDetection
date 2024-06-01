@@ -1,0 +1,22 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 8143,
+    "window": 125,
+    "AUC": 0.5032589388849543,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.4681025189228611,
+    "time": 0.5064384937286377
+}

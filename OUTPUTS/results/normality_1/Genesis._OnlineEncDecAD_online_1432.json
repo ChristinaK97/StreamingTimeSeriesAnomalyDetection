@@ -1,0 +1,70 @@
+{
+    "model": "OnlineEncDecAD",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "Genesis/genesis-anomalies.test.csv@1.out"
+    ],
+    "series_length": 12976,
+    "window": 125,
+    "AUC": 0.9028098406312859,
+    "Precision": 0.026345291479820628,
+    "Recall": 0.94,
+    "F": 0.051254089422028346,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.7050551938808155,
+    "Accuracy": 0.8659062885326757,
+    "confusion_matrix": [
+        [
+            11189,
+            1737
+        ],
+        [
+            3,
+            47
+        ]
+    ],
+    "time": 238.40632438659668,
+    "use_increm_learn": true,
+    "use_drift_detect": true,
+    "increm_idxs": [],
+    "drift_idxs": [
+        0,
+        400,
+        801,
+        1202,
+        1603,
+        2004,
+        2405,
+        3208,
+        3609,
+        4010,
+        4411,
+        4812,
+        5213,
+        5614,
+        6015,
+        6416,
+        6817,
+        7218,
+        7619,
+        8020,
+        8421,
+        8822,
+        9223,
+        9624,
+        10025,
+        10426,
+        11028,
+        11429,
+        11830,
+        12231,
+        12632
+    ],
+    "ks_significance": 0.001
+}

@@ -1,0 +1,22 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "Daphnet/S01R02E0.test.csv@1.out"
+    ],
+    "series_length": 23040,
+    "window": 70,
+    "AUC": 0.2724948775657091,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.29536399152270276,
+    "time": 95.1581118106842
+}

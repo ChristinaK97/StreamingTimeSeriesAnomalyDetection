@@ -1,0 +1,22 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 1,
+    "datasets": [
+        "SMD/machine-1-1.test.csv@1.out"
+    ],
+    "series_length": 22784,
+    "window": 279,
+    "AUC": 0.6777185848536819,
+    "Precision": 1.0,
+    "Recall": 0.061989606533036375,
+    "F": 0.11674239776301992,
+    "Precision@k": 0.061989606533036375,
+    "Rprecision": 1.0,
+    "Rrecall": 0.11342639844075997,
+    "Rf": 0.20374296603637576,
+    "ExistenceReward": 0.5,
+    "OverlapReward": 0.016782998050949943,
+    "RAUC": 0.7972020445614145,
+    "time": 109.18377304077148
+}

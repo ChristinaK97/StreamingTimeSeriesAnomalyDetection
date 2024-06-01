@@ -1,0 +1,22 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 100000,
+    "window": 285,
+    "AUC": 0.9812908522466881,
+    "Precision": 0.5134168157423972,
+    "Recall": 0.6163206871868289,
+    "F": 0.5601821730644112,
+    "Precision@k": 0.6163206871868289,
+    "Rprecision": 0.3062323710168454,
+    "Rrecall": 0.6960231466323178,
+    "Rf": 0.4253302969601229,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 0.6200289332903972,
+    "RAUC": 0.9864668069961738,
+    "time": 28.400946378707886
+}

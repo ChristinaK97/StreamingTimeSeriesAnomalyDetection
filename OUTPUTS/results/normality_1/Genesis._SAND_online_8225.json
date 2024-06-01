@@ -1,0 +1,22 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "Genesis/genesis-anomalies.test.csv@1.out"
+    ],
+    "series_length": 16220,
+    "window": 125,
+    "AUC": 0.0025899814471243006,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.2740859216022049,
+    "time": 6.716733455657959
+}

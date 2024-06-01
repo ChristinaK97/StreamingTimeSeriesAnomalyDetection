@@ -1,0 +1,22 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out"
+    ],
+    "series_length": 40540,
+    "window": 35,
+    "AUC": 0.9803632907283162,
+    "Precision": 0.8486352357320099,
+    "Recall": 0.6063829787234043,
+    "F": 0.7073422957600828,
+    "Precision@k": 0.6063829787234043,
+    "Rprecision": 0.06851574212893553,
+    "Rrecall": 0.29912663755458513,
+    "Rf": 0.11149358558840919,
+    "ExistenceReward": 0.5,
+    "OverlapReward": 0.24890829694323144,
+    "RAUC": 0.9723831085832264,
+    "time": 180.67218613624573
+}

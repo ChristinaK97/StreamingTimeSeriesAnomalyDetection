@@ -1,0 +1,33 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 100000,
+    "window": 285,
+    "AUC": 0.49101611291959607,
+    "Precision": 0.010777313754546679,
+    "Recall": 0.0572655690765927,
+    "F": 0.018140589569160998,
+    "Precision@k": 0.0,
+    "Rprecision": 0.00966183574879227,
+    "Rrecall": 0.21543162570990668,
+    "Rf": 0.01849422874583434,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 0.01928953213738334,
+    "RAUC": 0.5113170811299829,
+    "Accuracy": 0.9125252525252525,
+    "confusion_matrix": [
+        [
+            90260,
+            7343
+        ],
+        [
+            1317,
+            80
+        ]
+    ],
+    "time": 14551.236537694931
+}

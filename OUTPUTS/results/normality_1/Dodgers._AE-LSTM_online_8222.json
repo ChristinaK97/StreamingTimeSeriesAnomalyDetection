@@ -1,0 +1,33 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out"
+    ],
+    "series_length": 50400,
+    "window": 288,
+    "AUC": 0.49880628100757873,
+    "Precision": 0.08316831683168317,
+    "Recall": 0.008086253369272238,
+    "F": 0.014739427969819268,
+    "Precision@k": 0.008086253369272238,
+    "Rprecision": 0.08255620433838257,
+    "Rrecall": 0.03758272766496269,
+    "Rf": 0.051651655178956465,
+    "ExistenceReward": 0.1297709923664122,
+    "OverlapReward": 0.01453566148960031,
+    "RAUC": 0.6596575850406388,
+    "Accuracy": 0.886336032388664,
+    "confusion_matrix": [
+        [
+            43743,
+            463
+        ],
+        [
+            5152,
+            42
+        ]
+    ],
+    "time": 1931.0201427936554
+}

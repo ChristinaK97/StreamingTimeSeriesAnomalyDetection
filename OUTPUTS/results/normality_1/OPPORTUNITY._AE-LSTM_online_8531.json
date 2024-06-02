@@ -1,0 +1,33 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out"
+    ],
+    "series_length": 50670,
+    "window": 35,
+    "AUC": 0.4841707780437851,
+    "Precision": 0.003794037940379404,
+    "Recall": 0.0062056737588652485,
+    "F": 0.004709048099562731,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0031396338867603233,
+    "Rrecall": 0.10211640211640212,
+    "Rf": 0.006091966383173825,
+    "ExistenceReward": 0.5,
+    "OverlapReward": 0.0026455026455026454,
+    "RAUC": 0.49154577931594984,
+    "Accuracy": 0.9404268169921481,
+    "confusion_matrix": [
+        [
+            46704,
+            1838
+        ],
+        [
+            1121,
+            7
+        ]
+    ],
+    "time": 1410.312360048294
+}

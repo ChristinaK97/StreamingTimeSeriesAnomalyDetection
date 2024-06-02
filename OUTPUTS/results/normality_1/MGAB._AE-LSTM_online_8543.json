@@ -1,0 +1,33 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "MGAB/1.test.out"
+    ],
+    "series_length": 100000,
+    "window": 49,
+    "AUC": 0.5112601214574899,
+    "Precision": 0.003230148048452221,
+    "Recall": 0.06,
+    "F": 0.006130268199233717,
+    "Precision@k": 0.0,
+    "Rprecision": 0.00292347377472055,
+    "Rrecall": 0.11800000000000002,
+    "Rf": 0.005705590397770098,
+    "ExistenceReward": 0.4,
+    "OverlapReward": 0.0475,
+    "RAUC": 0.5054852193826782,
+    "Accuracy": 0.9606969696969697,
+    "confusion_matrix": [
+        [
+            95097,
+            3703
+        ],
+        [
+            188,
+            12
+        ]
+    ],
+    "time": 1189.9339728355408
+}

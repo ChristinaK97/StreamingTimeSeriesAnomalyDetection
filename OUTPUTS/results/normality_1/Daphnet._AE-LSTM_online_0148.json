@@ -1,0 +1,33 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "Daphnet/S01R02E0.test.csv@1.out"
+    ],
+    "series_length": 28800,
+    "window": 70,
+    "AUC": 0.4896803495182168,
+    "Precision": 0.03743961352657005,
+    "Recall": 0.0400775694893342,
+    "F": 0.038713705900718084,
+    "Precision@k": 0.0,
+    "Rprecision": 0.05828220858895705,
+    "Rrecall": 0.2053815928577157,
+    "Rf": 0.09079815105136185,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 0.006726991072144628,
+    "RAUC": 0.4995073329486864,
+    "Accuracy": 0.8892446043165467,
+    "confusion_matrix": [
+        [
+            24659,
+            1594
+        ],
+        [
+            1485,
+            62
+        ]
+    ],
+    "time": 716.0214641094208
+}

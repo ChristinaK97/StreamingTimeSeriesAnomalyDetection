@@ -96,6 +96,7 @@ weighted avg     0.9391    0.8940    0.9131     80000
 
 
 device = current_device() if is_available() else None
+# device = None
 print(f"Device = {device}")
 
 
@@ -264,13 +265,14 @@ class OnlineAD:
     # -------------------------------------------------------------------------------------------------
     def parse_stream(self, use_increm_learning: bool, use_concept_drift: bool):
 
-        stream = tqdm(self.X.iterrows()) if self.v==0 else self.X.iterrows()
-        for (t, xt) in stream:
-            
+        print(f"Parse stream with #{self.X.shape[0]} data points...")
+        for (t, xt) in self.X.iterrows():
+            if self.v == 0 and t % 5000 == 0: print(f"{t} ->", end='')
+
             self.pred_buffer.push(xt)
 
-            if self.pred_buffer.isFull():   
-                if self.v>=2: print(f"Predict buffer (# {len(self.pred_buffer)}) since full")
+            if self.pred_buffer.isFull():
+                if self.v >= 2: print(f"Predict buffer (# {len(self.pred_buffer)}) since full")
                 self.predict_model(self.pred_buffer, True)
                 self.pred_buffer.reset()
 
@@ -281,7 +283,7 @@ class OnlineAD:
                     self.concept_drift_detection(t, xt)
 
         if len(self.pred_buffer) > 0:
-            if self.v>=2: print(f"Predict last buffer (# {len(self.pred_buffer)}) before finish")
+            print(f"\nPredict last buffer (# {len(self.pred_buffer)}) before finish")
             self.predict_model(self.pred_buffer, True)
             self.pred_buffer.reset()
 
@@ -353,8 +355,10 @@ class OnlineAD:
 
     def get_batch_size(self, X):
         data_len = X.shape[0] if isinstance(X, pd.DataFrame) else len(X)
-        return min(
-            int(4 * (self.sequence_length // 100) * 100), data_len)
+        p = len(str(self.sequence_length)) - 1
+        p = pow(10, p)
+        batch_size = min(int(4 * (self.sequence_length // p) * p), data_len)
+        return batch_size
 
     def get_predictions(self):
         self.errors = np.concatenate(self.errors, axis=1).ravel()
@@ -396,13 +400,14 @@ def load_tst_set():
     i = current_script_path.find("EncDec-AD")
     current_script_path = current_script_path[0:i]
 
-    filenames = [str(Path(current_script_path, base_path, ECG))]
-    return load_dataset(filenames, sample_size=20000)
+    SMD = 'SMD/machine-1-1.test.csv@1.out'
+    filenames = [str(Path(current_script_path, base_path, SMD))]
+    return load_dataset(filenames, sample_size=100000)
 
 
 df, _, _ = load_tst_set()
 print("Loaded dataset ", df.shape)
-model = OnlineAD(df, verbose=1)
+model = OnlineAD(df, verbose=2)
 print(model.results())
 print(len(model.drift_idxs), model.drift_idxs)
 

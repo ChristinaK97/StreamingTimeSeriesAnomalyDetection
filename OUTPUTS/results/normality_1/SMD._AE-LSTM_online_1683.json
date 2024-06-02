@@ -1,0 +1,33 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "SMD/machine-1-1.test.csv@1.out"
+    ],
+    "series_length": 28479,
+    "window": 279,
+    "AUC": 0.5049022484233001,
+    "Precision": 0.16260162601626016,
+    "Recall": 0.022271714922048998,
+    "F": 0.039177277179236046,
+    "Precision@k": 0.022271714922048998,
+    "Rprecision": 0.039473684210526314,
+    "Rrecall": 0.028663003663003665,
+    "Rf": 0.03321072363301974,
+    "ExistenceReward": 0.125,
+    "OverlapReward": 0.004578754578754578,
+    "RAUC": 0.5186695236085761,
+    "Accuracy": 0.8929000327522836,
+    "confusion_matrix": [
+        [
+            24476,
+            309
+        ],
+        [
+            2634,
+            60
+        ]
+    ],
+    "time": 1586.9932005405426
+}

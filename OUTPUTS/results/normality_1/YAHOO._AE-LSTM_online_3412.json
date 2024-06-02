@@ -1,0 +1,33 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 1420,
+    "window": 48,
+    "AUC": 0.9904306220095694,
+    "Precision": 0.2,
+    "Recall": 1.0,
+    "F": 0.33333333333333337,
+    "Precision@k": 0.0,
+    "Rprecision": 0.2222222222222222,
+    "Rrecall": 1.0,
+    "Rf": 0.3636363636363636,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 1.0,
+    "RAUC": 0.6355430975172895,
+    "Accuracy": 0.9809523809523809,
+    "confusion_matrix": [
+        [
+            410,
+            8
+        ],
+        [
+            0,
+            2
+        ]
+    ],
+    "time": 49.20627212524414
+}

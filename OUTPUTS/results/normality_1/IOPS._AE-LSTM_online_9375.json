@@ -1,0 +1,33 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out"
+    ],
+    "series_length": 100000,
+    "window": 125,
+    "AUC": 0.7469643175750552,
+    "Precision": 0.1724137931034483,
+    "Recall": 0.5053763440860215,
+    "F": 0.25711159737417943,
+    "Precision@k": 0.0,
+    "Rprecision": 0.07834602829162132,
+    "Rrecall": 0.4682937334419572,
+    "Rf": 0.1342344873438388,
+    "ExistenceReward": 0.9743589743589743,
+    "OverlapReward": 0.3417774232127029,
+    "RAUC": 0.5760093989172608,
+    "Accuracy": 0.9862828282828283,
+    "confusion_matrix": [
+        [
+            97407,
+            1128
+        ],
+        [
+            230,
+            235
+        ]
+    ],
+    "time": 2202.0603308677673
+}

@@ -91,18 +91,16 @@ class EncDecAD(Algorithm, PyTorchUtils):
             sequences = [data[i : i + self.sequence_length] for i in range(data.shape[0] - self.sequence_length + 1)]
             data_loader = DataLoader(dataset=sequences, batch_size=batch_size, shuffle=False, drop_last=False)
 
-            print(len(sequences), sequences[0:min(10, len(sequences))])
-            print(batch_size)
-
             self.lstmed.eval()
-
-            mvnormal = multivariate_normal(self.mean, self.cov, allow_singular=True)
+            try:
+                mvnormal = multivariate_normal(self.mean, self.cov, allow_singular=True)
+            except ValueError:
+                print()
 
             scores = []
             outputs = []
             errors = []
             for idx, ts in enumerate(data_loader):
-                print("batch ", idx, ts)
                 output = self.lstmed(self.to_var(ts))
                 error = nn.L1Loss(reduce=False)(output, self.to_var(ts.float()))
                 score = -mvnormal.logpdf(error.view(-1, X.shape[1]).data.cpu().numpy())
@@ -112,8 +110,6 @@ class EncDecAD(Algorithm, PyTorchUtils):
                     outputs.append(output.data.cpu().numpy())
                     errors.append(error.data.cpu().numpy())
 
-
-            print(len(scores), scores)
             # stores seq_len-many scores per timestamp and averages them
             scores = np.concatenate(scores)
             lattice = np.full((self.sequence_length, data.shape[0]), np.nan)

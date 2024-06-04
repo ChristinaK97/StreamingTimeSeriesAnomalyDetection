@@ -213,9 +213,13 @@ class OnlineAD:
         X = df[[0]]
         Y = df[1]
         self.n_features = X.shape[1]
+
         self.sequence_length = find_length(X[0])
+        if self.sequence_length > self.Wdrift:
+            self.Wdrift = int(self.sequence_length)
+
         X_init_train, Y_init_train, _, _, self.X, self.Y = separate_sets(X, Y, train_perc=0.2, val_perc=0)
-        if self.v>=1: print(f"Seq len = {self.sequence_length}\nInitializing model with {X_init_train.shape[0]} samples...")
+        print(f"Seq len = {self.sequence_length}\nInitializing model with {X_init_train.shape[0]} samples...")
         self.fit_model(X_init_train, True, 0)
 
 

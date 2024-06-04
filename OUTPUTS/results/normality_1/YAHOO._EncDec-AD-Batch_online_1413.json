@@ -1,0 +1,22 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 1140,
+    "window": 48,
+    "AUC": 1.0,
+    "Precision": 0.3333333333333333,
+    "Recall": 1.0,
+    "F": 0.5,
+    "Precision@k": 1.0,
+    "Rprecision": 0.4,
+    "Rrecall": 1.0,
+    "Rf": 0.5714285714285715,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 1.0,
+    "RAUC": 0.987621105436037,
+    "time": 8.182589769363403
+}

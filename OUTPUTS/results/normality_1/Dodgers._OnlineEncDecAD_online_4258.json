@@ -95,5 +95,6 @@
         38392,
         38969
     ],
-    "ks_significance": 0.001
+    "ks_significance": 0.001,
+    "percentile": 90
 }

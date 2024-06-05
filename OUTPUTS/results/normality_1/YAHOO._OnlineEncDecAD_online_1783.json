@@ -7,29 +7,29 @@
     ],
     "series_length": 1136,
     "window": 48,
-    "AUC": 0.9488536155202822,
-    "Precision": 0.01694915254237288,
+    "AUC": 0.9598765432098765,
+    "Precision": 0.021505376344086023,
     "Recall": 1.0,
-    "F": 0.03333333333333333,
+    "F": 0.04210526315789474,
     "Precision@k": 0.0,
-    "Rprecision": 0.0,
-    "Rrecall": 0.0,
-    "Rf": 0.0,
-    "ExistenceReward": 0.0,
-    "OverlapReward": 0.0,
-    "RAUC": 0.9598111404834634,
-    "Accuracy": 0.897887323943662,
+    "Rprecision": 0.0009765625,
+    "Rrecall": 1.0,
+    "Rf": 0.001951219512195122,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 1.0,
+    "RAUC": 0.9701663067601775,
+    "Accuracy": 0.9198943661971831,
     "confusion_matrix": [
         [
-            1018,
-            116
+            1043,
+            91
         ],
         [
             0,
             2
         ]
     ],
-    "time": 8.648337125778198,
+    "time": 9.194575309753418,
     "use_increm_learn": true,
     "use_drift_detect": true,
     "increm_idxs": [
@@ -39,5 +39,6 @@
         0,
         1003
     ],
-    "ks_significance": 0.001
+    "ks_significance": 0.001,
+    "percentile": 92
 }

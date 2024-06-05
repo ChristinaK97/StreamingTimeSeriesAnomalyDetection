@@ -170,5 +170,6 @@
         79090,
         79661
     ],
-    "ks_significance": 0.001
+    "ks_significance": 0.001,
+    "percentile": 90
 }

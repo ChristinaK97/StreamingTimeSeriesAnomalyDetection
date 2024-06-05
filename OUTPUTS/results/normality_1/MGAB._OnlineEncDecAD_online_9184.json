@@ -7,29 +7,29 @@
     ],
     "series_length": 80000,
     "window": 49,
-    "AUC": 0.5198057644110277,
-    "Precision": 0.0034830202761537503,
-    "Recall": 0.14,
-    "F": 0.006796941376380629,
+    "AUC": 0.5170802005012531,
+    "Precision": 0.0035526722273710224,
+    "Recall": 0.115,
+    "F": 0.0068924183398261915,
     "Precision@k": 0.0,
-    "Rprecision": 0.0,
-    "Rrecall": 0.0,
-    "Rf": 0.0,
-    "ExistenceReward": 0.0,
-    "OverlapReward": 0.0,
-    "RAUC": 0.5218300724670439,
-    "Accuracy": 0.8977125,
+    "Rprecision": 0.002294035507680032,
+    "Rrecall": 0.152,
+    "Rf": 0.004519855819702227,
+    "ExistenceReward": 0.3,
+    "OverlapReward": 0.11499999999999999,
+    "RAUC": 0.5095776092386315,
+    "Accuracy": 0.91715,
     "confusion_matrix": [
         [
-            71789,
-            8011
+            73349,
+            6451
         ],
         [
-            172,
-            28
+            177,
+            23
         ]
     ],
-    "time": 520.2527046203613,
+    "time": 534.4477663040161,
     "use_increm_learn": true,
     "use_drift_detect": true,
     "increm_idxs": [
@@ -143,5 +143,6 @@
         77546,
         79555
     ],
-    "ks_significance": 0.001
+    "ks_significance": 0.001,
+    "percentile": 92
 }

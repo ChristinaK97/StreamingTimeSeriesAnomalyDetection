@@ -1,0 +1,83 @@
+{
+    "model": "OnlineEncDecAD",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "SensorScope/stb-2.test.out",
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 25063,
+    "window": 13,
+    "AUC": 0.7911717542921619,
+    "Precision": 0.3477810037328909,
+    "Recall": 0.7206703910614525,
+    "F": 0.4691565253881661,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.7972394039144026,
+    "Accuracy": 0.8485815744324303,
+    "confusion_matrix": [
+        [
+            19591,
+            3145
+        ],
+        [
+            650,
+            1677
+        ]
+    ],
+    "time": 211.97256731987,
+    "use_increm_learn": true,
+    "use_drift_detect": true,
+    "increm_idxs": [
+        10624,
+        11624,
+        12624,
+        13624,
+        14624,
+        15624,
+        16624,
+        17624,
+        18624,
+        20070,
+        21070,
+        22079,
+        23079,
+        24691
+    ],
+    "drift_idxs": [
+        0,
+        400,
+        801,
+        1202,
+        1603,
+        2004,
+        2405,
+        2806,
+        3207,
+        3608,
+        4009,
+        4410,
+        4811,
+        5212,
+        5613,
+        6014,
+        6415,
+        6816,
+        7418,
+        7819,
+        8220,
+        8621,
+        9223,
+        9624,
+        19070,
+        21079,
+        23691
+    ],
+    "ks_significance": 0.001,
+    "percentile": 92
+}

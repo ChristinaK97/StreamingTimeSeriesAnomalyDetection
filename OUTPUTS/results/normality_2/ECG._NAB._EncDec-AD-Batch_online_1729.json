@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "NAB/NAB_data_Traffic_1.out"
+    ],
+    "series_length": 42007,
+    "window": 125,
+    "AUC": 0.7207135897859556,
+    "Precision": 0.2831858407079646,
+    "Recall": 0.014904517931998137,
+    "F": 0.02831858407079646,
+    "Precision@k": 0.014904517931998137,
+    "Rprecision": 0.25555555555555554,
+    "Rrecall": 0.025483599663582848,
+    "Rf": 0.04634568065438586,
+    "ExistenceReward": 0.10344827586206896,
+    "OverlapReward": 0.005992430613961312,
+    "RAUC": 0.7872078348250611,
+    "time": 172.0590000152588
+}

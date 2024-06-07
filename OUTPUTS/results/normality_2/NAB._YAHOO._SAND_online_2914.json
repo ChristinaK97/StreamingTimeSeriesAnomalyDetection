@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 3919,
+    "window": 91,
+    "AUC": 0.4729989191659124,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.5737956163440697,
+    "time": 29.014245748519897
+}

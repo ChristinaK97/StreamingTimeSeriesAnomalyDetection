@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "YAHOO/Yahoo_A1real_1_data.out",
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out"
+    ],
+    "series_length": 41140,
+    "window": 28,
+    "AUC": 0.8849680397921902,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.8826620138736045,
+    "time": 172.93409776687622
+}

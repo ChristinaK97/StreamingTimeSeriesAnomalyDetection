@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 41140,
+    "window": 125,
+    "AUC": 0.7094584949515889,
+    "Precision": 0.25184275184275184,
+    "Recall": 0.10390268626457172,
+    "F": 0.14711158952278436,
+    "Precision@k": 0.10390268626457172,
+    "Rprecision": 0.0753317901234568,
+    "Rrecall": 0.24993103448275866,
+    "Rf": 0.11576946893815936,
+    "ExistenceReward": 0.896551724137931,
+    "OverlapReward": 0.08827586206896554,
+    "RAUC": 0.7765937616553877,
+    "time": 177.59625720977783
+}

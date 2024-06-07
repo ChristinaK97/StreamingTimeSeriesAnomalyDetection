@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out"
+    ],
+    "series_length": 52000,
+    "window": 41,
+    "AUC": 0.9179777661013546,
+    "Precision": 0.3620689655172414,
+    "Recall": 0.016253869969040248,
+    "F": 0.03111111111111111,
+    "Precision@k": 0.016253869969040248,
+    "Rprecision": 0.21428571428571427,
+    "Rrecall": 0.19907160862001635,
+    "Rf": 0.2063986748669499,
+    "ExistenceReward": 0.75,
+    "OverlapReward": 0.06133951077502042,
+    "RAUC": 0.925366251841649,
+    "time": 17.369901180267334
+}

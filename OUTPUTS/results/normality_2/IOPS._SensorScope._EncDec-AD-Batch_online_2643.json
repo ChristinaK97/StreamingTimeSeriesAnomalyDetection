@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 63643,
+    "window": 125,
+    "AUC": 0.5191799164938534,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.6612260944616004,
+    "time": 271.75819659233093
+}

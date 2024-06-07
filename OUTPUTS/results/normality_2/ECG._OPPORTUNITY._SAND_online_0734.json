@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out"
+    ],
+    "series_length": 100000,
+    "window": 125,
+    "AUC": 0.9299827263620161,
+    "Precision": 0.23954372623574144,
+    "Recall": 0.018245004344048653,
+    "F": 0.03390742734122713,
+    "Precision@k": 0.018245004344048653,
+    "Rprecision": 0.25,
+    "Rrecall": 0.008283710467116581,
+    "Rf": 0.01603606834541589,
+    "ExistenceReward": 0.030303030303030304,
+    "OverlapReward": 0.00277888050813815,
+    "RAUC": 0.9509969667244803,
+    "time": 158.37952303886414
+}

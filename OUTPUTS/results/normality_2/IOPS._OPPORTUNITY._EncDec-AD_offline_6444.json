@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out"
+    ],
+    "series_length": 90000,
+    "window": 125,
+    "AUC": 0.919192487082978,
+    "Precision": 0.7409360580092288,
+    "Recall": 0.8580152671755725,
+    "F": 0.7951892465511142,
+    "Precision@k": 0.8580152671755725,
+    "Rprecision": 0.029445443276579178,
+    "Rrecall": 0.11078016197583677,
+    "Rf": 0.04652461253075682,
+    "ExistenceReward": 0.1111111111111111,
+    "OverlapReward": 0.11069742469201817,
+    "RAUC": 0.6185356944362053,
+    "time": 194.68161177635193
+}

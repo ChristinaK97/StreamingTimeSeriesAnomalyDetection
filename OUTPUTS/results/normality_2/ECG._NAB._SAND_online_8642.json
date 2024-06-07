@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "NAB/NAB_data_Traffic_1.out"
+    ],
+    "series_length": 52499,
+    "window": 125,
+    "AUC": 0.9865389591583642,
+    "Precision": 0.9286536248561565,
+    "Recall": 0.31388564760793464,
+    "F": 0.46918604651162793,
+    "Precision@k": 0.31388564760793464,
+    "Rprecision": 0.9236218217278407,
+    "Rrecall": 0.34060832137733144,
+    "Rf": 0.49768355864937075,
+    "ExistenceReward": 0.4411764705882353,
+    "OverlapReward": 0.3154662840746055,
+    "RAUC": 0.9943423232085231,
+    "time": 45.120925426483154
+}

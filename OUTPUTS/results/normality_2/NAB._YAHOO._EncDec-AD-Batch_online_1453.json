@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 3137,
+    "window": 91,
+    "AUC": 0.6034113590999818,
+    "Precision": 0.16666666666666666,
+    "Recall": 0.011976047904191617,
+    "F": 0.022346368715083796,
+    "Precision@k": 0.011976047904191617,
+    "Rprecision": 0.5,
+    "Rrecall": 0.24195121951219517,
+    "Rf": 0.32610124917817235,
+    "ExistenceReward": 0.4,
+    "OverlapReward": 0.20243902439024392,
+    "RAUC": 0.7241871392542056,
+    "time": 20.205732583999634
+}

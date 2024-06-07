@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "SensorScope/stb-2.test.out",
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 25063,
+    "window": 13,
+    "AUC": 0.4330512416278989,
+    "Precision": 0.4153846153846154,
+    "Recall": 0.023205844434894714,
+    "F": 0.04395604395604395,
+    "Precision@k": 0.023205844434894714,
+    "Rprecision": 0.3287671232876712,
+    "Rrecall": 0.03369090186730234,
+    "Rf": 0.06111858543148184,
+    "ExistenceReward": 0.16666666666666666,
+    "OverlapReward": 0.00044696066746126344,
+    "RAUC": 0.43242035672655543,
+    "time": 118.47447657585144
+}

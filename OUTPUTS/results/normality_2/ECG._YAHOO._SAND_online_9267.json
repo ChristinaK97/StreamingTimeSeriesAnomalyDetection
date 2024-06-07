@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 51420,
+    "window": 125,
+    "AUC": 0.9644817058799435,
+    "Precision": 0.3747747747747748,
+    "Recall": 0.1787709497206704,
+    "F": 0.24207157404713417,
+    "Precision@k": 0.1787709497206704,
+    "Rprecision": 0.6797675858552784,
+    "Rrecall": 0.2429090909090909,
+    "Rf": 0.3579189340487501,
+    "ExistenceReward": 0.30303030303030304,
+    "OverlapReward": 0.22787878787878788,
+    "RAUC": 0.9725736289075173,
+    "time": 56.039538860321045
+}

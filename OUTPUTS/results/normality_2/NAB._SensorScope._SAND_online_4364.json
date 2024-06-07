@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 32052,
+    "window": 91,
+    "AUC": 0.6166533317863401,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.650348533698654,
+    "time": 4.769360303878784
+}

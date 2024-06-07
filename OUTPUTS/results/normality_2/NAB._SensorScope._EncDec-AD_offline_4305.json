@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 31553,
+    "window": 91,
+    "AUC": 0.3246019358476835,
+    "Precision": 0.37254901960784315,
+    "Recall": 0.00482111139304745,
+    "F": 0.009519038076152304,
+    "Precision@k": 0.00482111139304745,
+    "Rprecision": 0.25,
+    "Rrecall": 0.055284552845528454,
+    "Rf": 0.09054593874833555,
+    "ExistenceReward": 0.2222222222222222,
+    "OverlapReward": 0.013550135501355013,
+    "RAUC": 0.32572892530061714,
+    "time": 10.436633348464966
+}

@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out",
+        "NAB/NAB_data_Traffic_1.out"
+    ],
+    "series_length": 52499,
+    "window": 288,
+    "AUC": 0.7335299090118909,
+    "Precision": 0.28842832469775476,
+    "Recall": 0.029971284996410625,
+    "F": 0.054300113802633714,
+    "Precision@k": 0.029971284996410625,
+    "Rprecision": 0.17142323540054394,
+    "Rrecall": 0.008708599541264147,
+    "Rf": 0.01657515241160412,
+    "ExistenceReward": 0.022222222222222223,
+    "OverlapReward": 0.00533019387102463,
+    "RAUC": 0.8110285488732987,
+    "time": 8.522714614868164
+}

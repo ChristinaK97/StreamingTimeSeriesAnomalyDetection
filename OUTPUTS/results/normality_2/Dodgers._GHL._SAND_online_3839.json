@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out",
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out"
+    ],
+    "series_length": 100000,
+    "window": 288,
+    "AUC": 0.784016426113529,
+    "Precision": 0.9795081967213115,
+    "Recall": 0.04369287020109689,
+    "F": 0.08365418270913547,
+    "Precision@k": 0.04369287020109689,
+    "Rprecision": 0.48975409836065575,
+    "Rrecall": 0.008949413801327487,
+    "Rf": 0.017577626706995846,
+    "ExistenceReward": 0.015037593984962405,
+    "OverlapReward": 0.0074273687554187555,
+    "RAUC": 0.7996388392353776,
+    "time": 29.964022159576416
+}

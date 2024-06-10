@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "MITDB/100.test.csv@1.out",
+        "SMD/machine-1-1.test.csv@1.out"
+    ],
+    "series_length": 78479,
+    "window": 285,
+    "AUC": 0.5892762496941816,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.6072518868918575,
+    "time": 18.262082815170288
+}

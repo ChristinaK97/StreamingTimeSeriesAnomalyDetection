@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "KDD21/001_UCR_Anomaly_DISTORTED1sddb40_35000_52000_52620.out",
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 51420,
+    "window": 208,
+    "AUC": 0.9845968337936132,
+    "Precision": 0.0021551724137931034,
+    "Recall": 1.0,
+    "F": 0.004301075268817204,
+    "Precision@k": 1.0,
+    "Rprecision": 0.00022988505747126436,
+    "Rrecall": 1.0,
+    "Rf": 0.00045966444495518265,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 1.0,
+    "RAUC": 0.9896611380781367,
+    "time": 81.7471113204956
+}

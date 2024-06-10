@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "Occupancy/room-occupancy.train.csv@3.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 56515,
+    "window": 125,
+    "AUC": 0.5659421239517436,
+    "Precision": 0.9631578947368421,
+    "Recall": 0.013433657551844376,
+    "F": 0.02649773755656109,
+    "Precision@k": 0.013433657551844376,
+    "Rprecision": 0.9184609250398723,
+    "Rrecall": 0.009185931057088502,
+    "Rf": 0.018189936570353973,
+    "ExistenceReward": 0.023255813953488372,
+    "OverlapReward": 0.005668460332988534,
+    "RAUC": 0.8353801307784406,
+    "time": 30.687377214431763
+}

@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "Genesis/genesis-anomalies.test.csv@1.out"
+    ],
+    "series_length": 56220,
+    "window": 125,
+    "AUC": 0.47543054844434285,
+    "Precision": 0.02502780867630701,
+    "Recall": 0.024324324324324326,
+    "F": 0.024671052631578948,
+    "Precision@k": 0.024324324324324326,
+    "Rprecision": 0.0034314122828348332,
+    "Rrecall": 0.0875248208581542,
+    "Rf": 0.006603917839914253,
+    "ExistenceReward": 0.1111111111111111,
+    "OverlapReward": 0.08162824829491495,
+    "RAUC": 0.5291873025854759,
+    "time": 167.1724021434784
+}

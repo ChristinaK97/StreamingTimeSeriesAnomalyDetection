@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "SensorScope/stb-2.test.out",
+        "Genesis/genesis-anomalies.test.csv@1.out"
+    ],
+    "series_length": 39863,
+    "window": 13,
+    "AUC": 0.2695703439135611,
+    "Precision": 0.03411675511751327,
+    "Recall": 0.018947368421052633,
+    "F": 0.024363833243096912,
+    "Precision@k": 0.018947368421052633,
+    "Rprecision": 0.004324582013825042,
+    "Rrecall": 0.33759573759573763,
+    "Rf": 0.008539770063491098,
+    "ExistenceReward": 0.42857142857142855,
+    "OverlapReward": 0.31485181485181485,
+    "RAUC": 0.26708802030861983,
+    "time": 120.38025879859924
+}

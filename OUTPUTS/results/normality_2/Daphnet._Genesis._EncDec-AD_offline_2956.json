@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "Daphnet/S01R02E0.test.csv@1.out",
+        "Genesis/genesis-anomalies.test.csv@1.out"
+    ],
+    "series_length": 39260,
+    "window": 70,
+    "AUC": 0.401490604537545,
+    "Precision": 0.02850877192982456,
+    "Recall": 0.008140262993112084,
+    "F": 0.012664393570384803,
+    "Precision@k": 0.008140262993112084,
+    "Rprecision": 0.04205607476635514,
+    "Rrecall": 0.10189046516293146,
+    "Rf": 0.05953756197232668,
+    "ExistenceReward": 0.5,
+    "OverlapReward": 0.002363081453664316,
+    "RAUC": 0.4649010147266071,
+    "time": 81.18084049224854
+}

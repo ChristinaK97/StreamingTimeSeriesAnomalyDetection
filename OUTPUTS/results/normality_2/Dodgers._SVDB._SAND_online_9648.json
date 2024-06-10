@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 100000,
+    "window": 288,
+    "AUC": 0.4622327660288499,
+    "Precision": 0.9549019607843138,
+    "Recall": 0.015511036086250278,
+    "F": 0.030526216817626226,
+    "Precision@k": 0.015511036086250278,
+    "Rprecision": 0.7748813082468788,
+    "Rrecall": 0.00509022530795532,
+    "Rf": 0.010114011284291298,
+    "ExistenceReward": 0.010554089709762533,
+    "OverlapReward": 0.0037242592075035167,
+    "RAUC": 0.7626806779321016,
+    "time": 25.624692678451538
+}

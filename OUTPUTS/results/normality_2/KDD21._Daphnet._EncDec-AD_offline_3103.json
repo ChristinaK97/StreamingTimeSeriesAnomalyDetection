@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "KDD21/001_UCR_Anomaly_DISTORTED1sddb40_35000_52000_52620.out",
+        "Daphnet/S01R02E0.test.csv@1.out"
+    ],
+    "series_length": 68800,
+    "window": 208,
+    "AUC": 0.6705764302635119,
+    "Precision": 0.020969855832241154,
+    "Recall": 0.010342598577892695,
+    "F": 0.013852813852813853,
+    "Precision@k": 0.010342598577892695,
+    "Rprecision": 0.032467532467532464,
+    "Rrecall": 0.16327979126733835,
+    "Rf": 0.0541646426946255,
+    "ExistenceReward": 0.8,
+    "OverlapReward": 0.004099739084172932,
+    "RAUC": 0.7875920142869284,
+    "time": 154.22087383270264
+}

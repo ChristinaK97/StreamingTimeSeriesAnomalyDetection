@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "SensorScope/stb-2.test.out",
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 79553,
+    "window": 13,
+    "AUC": 0.5109750105339522,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.5121815030919123,
+    "time": 17.01788568496704
+}

@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out",
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out"
+    ],
+    "series_length": 90000,
+    "window": 288,
+    "AUC": 0.33780677763780553,
+    "Precision": 0.041692987997473153,
+    "Recall": 0.014432538814782419,
+    "F": 0.021442495126705655,
+    "Precision@k": 0.014432538814782419,
+    "Rprecision": 0.039711495285136955,
+    "Rrecall": 0.061854955874701564,
+    "Rf": 0.04836937316466677,
+    "ExistenceReward": 0.26785714285714285,
+    "OverlapReward": 0.010354409129091243,
+    "RAUC": 0.5469149736446194,
+    "time": 207.48065328598022
+}

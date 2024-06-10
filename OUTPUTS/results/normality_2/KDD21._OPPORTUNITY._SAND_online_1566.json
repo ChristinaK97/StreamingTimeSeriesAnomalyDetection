@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "KDD21/001_UCR_Anomaly_DISTORTED1sddb40_35000_52000_52620.out",
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out"
+    ],
+    "series_length": 100000,
+    "window": 208,
+    "AUC": 0.8044154194060779,
+    "Precision": 0.12037037037037036,
+    "Recall": 0.034574468085106384,
+    "F": 0.05371900826446281,
+    "Precision@k": 0.034574468085106384,
+    "Rprecision": 0.25,
+    "Rrecall": 0.12270742358078604,
+    "Rf": 0.16461628588166377,
+    "ExistenceReward": 0.5,
+    "OverlapReward": 0.028384279475982533,
+    "RAUC": 0.7896202561394221,
+    "time": 100.6799066066742
+}

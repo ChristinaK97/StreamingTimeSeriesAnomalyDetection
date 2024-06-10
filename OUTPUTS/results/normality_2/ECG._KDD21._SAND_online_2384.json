@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "KDD21/001_UCR_Anomaly_DISTORTED1sddb40_35000_52000_52620.out"
+    ],
+    "series_length": 100000,
+    "window": 125,
+    "AUC": 0.9777129794606317,
+    "Precision": 0.37210682492581604,
+    "Recall": 0.2696774193548387,
+    "F": 0.3127182044887781,
+    "Precision@k": 0.2696774193548387,
+    "Rprecision": 0.3484423273557441,
+    "Rrecall": 0.2996129032258065,
+    "Rf": 0.32218802465995694,
+    "ExistenceReward": 0.41935483870967744,
+    "OverlapReward": 0.26967741935483874,
+    "RAUC": 0.9779770413721534,
+    "time": 85.2842710018158
+}

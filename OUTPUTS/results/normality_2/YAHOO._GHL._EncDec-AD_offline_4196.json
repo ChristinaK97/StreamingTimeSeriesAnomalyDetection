@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "YAHOO/Yahoo_A1real_1_data.out",
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out"
+    ],
+    "series_length": 51136,
+    "window": 125,
+    "AUC": 0.984521004655761,
+    "Precision": 0.411214953271028,
+    "Recall": 0.6027397260273972,
+    "F": 0.4888888888888888,
+    "Precision@k": 0.6027397260273972,
+    "Rprecision": 0.4583333333333333,
+    "Rrecall": 0.22962962962962963,
+    "Rf": 0.3059668012561687,
+    "ExistenceReward": 0.3333333333333333,
+    "OverlapReward": 0.20370370370370372,
+    "RAUC": 0.5022624391717543,
+    "time": 17.37940502166748
+}

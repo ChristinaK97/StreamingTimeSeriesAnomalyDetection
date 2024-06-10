@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "Daphnet/S01R02E0.test.csv@1.out"
+    ],
+    "series_length": 68800,
+    "window": 125,
+    "AUC": 0.5804467598845529,
+    "Precision": 0.019704433497536946,
+    "Recall": 0.004780400358530027,
+    "F": 0.007694157249338784,
+    "Precision@k": 0.004780400358530027,
+    "Rprecision": 0.03134796238244514,
+    "Rrecall": 0.028151688149541096,
+    "Rf": 0.02966397460232885,
+    "ExistenceReward": 0.13793103448275862,
+    "OverlapReward": 0.0007068515662367126,
+    "RAUC": 0.5176817465011246,
+    "time": 172.93786811828613
+}

@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out"
+    ],
+    "series_length": 90000,
+    "window": 125,
+    "AUC": 0.4771129740432659,
+    "Precision": 1.0,
+    "Recall": 0.1165644171779141,
+    "F": 0.20879120879120877,
+    "Precision@k": 0.1165644171779141,
+    "Rprecision": 1.0,
+    "Rrecall": 0.2590756302521009,
+    "Rf": 0.4115330708135888,
+    "ExistenceReward": 0.7058823529411765,
+    "OverlapReward": 0.1473739495798319,
+    "RAUC": 0.45611352976720576,
+    "time": 194.8046019077301
+}

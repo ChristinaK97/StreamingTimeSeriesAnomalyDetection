@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "SensorScope/stb-2.test.out",
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 73643,
+    "window": 13,
+    "AUC": 0.5253926833633217,
+    "Precision": 0.423841059602649,
+    "Recall": 0.02384500745156483,
+    "F": 0.045149911816578486,
+    "Precision@k": 0.02384500745156483,
+    "Rprecision": 0.3625,
+    "Rrecall": 0.040420862274464675,
+    "Rf": 0.07273171456936028,
+    "ExistenceReward": 0.2,
+    "OverlapReward": 0.0005260778430808433,
+    "RAUC": 0.5286777386707884,
+    "time": 132.153315782547
+}

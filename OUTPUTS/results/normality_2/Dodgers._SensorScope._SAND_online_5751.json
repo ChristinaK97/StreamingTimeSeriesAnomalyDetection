@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 79553,
+    "window": 288,
+    "AUC": 0.6837594076528324,
+    "Precision": 0.33787465940054495,
+    "Recall": 0.013621882895748654,
+    "F": 0.026187961985216474,
+    "Precision@k": 0.013621882895748654,
+    "Rprecision": 0.12015503875968993,
+    "Rrecall": 0.005761694365454029,
+    "Rf": 0.010996101830478212,
+    "ExistenceReward": 0.014388489208633094,
+    "OverlapReward": 0.0036049956546592627,
+    "RAUC": 0.8239998996324859,
+    "time": 18.220081567764282
+}

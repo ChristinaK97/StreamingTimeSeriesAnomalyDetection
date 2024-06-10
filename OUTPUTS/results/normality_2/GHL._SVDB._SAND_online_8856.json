@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 100000,
+    "window": 125,
+    "AUC": 0.3793580192648789,
+    "Precision": 0.5181907571288102,
+    "Recall": 0.020102994468815565,
+    "F": 0.038704465334900115,
+    "Precision@k": 0.020102994468815565,
+    "Rprecision": 0.17148492944810886,
+    "Rrecall": 0.010332015941745282,
+    "Rf": 0.019489767810451794,
+    "ExistenceReward": 0.016129032258064516,
+    "OverlapReward": 0.008882761862665473,
+    "RAUC": 0.5019014204787271,
+    "time": 58.906771659851074
+}

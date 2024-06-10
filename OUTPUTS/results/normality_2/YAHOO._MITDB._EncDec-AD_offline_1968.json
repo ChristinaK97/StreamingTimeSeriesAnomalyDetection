@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "YAHOO/Yahoo_A1real_1_data.out",
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 51136,
+    "window": 284,
+    "AUC": 0.49359285643168016,
+    "Precision": 0.004431314623338257,
+    "Recall": 0.008310249307479225,
+    "F": 0.005780346820809248,
+    "Precision@k": 0.008310249307479225,
+    "Rprecision": 0.007905138339920948,
+    "Rrecall": 0.4014856081708449,
+    "Rf": 0.015504987844146901,
+    "ExistenceReward": 0.6666666666666666,
+    "OverlapReward": 0.3351903435468895,
+    "RAUC": 0.4958224852878592,
+    "time": 21.855385065078735
+}

@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "Daphnet/S01R02E0.test.csv@1.out"
+    ],
+    "series_length": 78800,
+    "window": 125,
+    "AUC": 0.8795447038247627,
+    "Precision": 0.19230769230769232,
+    "Recall": 0.02453512396694215,
+    "F": 0.04351809436555199,
+    "Precision@k": 0.02453512396694215,
+    "Rprecision": 0.75,
+    "Rrecall": 0.04481481481481482,
+    "Rf": 0.08457595526561046,
+    "ExistenceReward": 0.08333333333333333,
+    "OverlapReward": 0.03518518518518518,
+    "RAUC": 0.9162246358439703,
+    "time": 60.386014223098755
+}

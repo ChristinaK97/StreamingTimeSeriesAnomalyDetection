@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "KDD21/001_UCR_Anomaly_DISTORTED1sddb40_35000_52000_52620.out",
+        "Genesis/genesis-anomalies.test.csv@1.out"
+    ],
+    "series_length": 56220,
+    "window": 208,
+    "AUC": 0.9729937689157914,
+    "Precision": 0.029182879377431907,
+    "Recall": 0.9,
+    "F": 0.056532663316582916,
+    "Precision@k": 0.9,
+    "Rprecision": 0.003867470613313844,
+    "Rrecall": 0.7877233877233878,
+    "Rf": 0.007697150671602143,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 0.7346542346542346,
+    "RAUC": 0.8904980445051044,
+    "time": 147.37866306304932
+}

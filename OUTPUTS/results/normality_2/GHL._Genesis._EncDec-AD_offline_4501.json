@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out",
+        "Genesis/genesis-anomalies.test.csv@1.out"
+    ],
+    "series_length": 56220,
+    "window": 125,
+    "AUC": 0.6350522640261647,
+    "Precision": 0.025069637883008356,
+    "Recall": 0.23195876288659795,
+    "F": 0.04524886877828054,
+    "Precision@k": 0.23195876288659795,
+    "Rprecision": 0.0034386591936750336,
+    "Rrecall": 0.5907925407925408,
+    "Rf": 0.006837521160107472,
+    "ExistenceReward": 0.75,
+    "OverlapReward": 0.550990675990676,
+    "RAUC": 0.7807528612482643,
+    "time": 156.853679895401
+}

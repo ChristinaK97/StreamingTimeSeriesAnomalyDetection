@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 52499,
+    "window": 91,
+    "AUC": 0.31016382244965357,
+    "Precision": 1.0,
+    "Recall": 0.013641372496865143,
+    "F": 0.026915579547158494,
+    "Precision@k": 0.013641372496865143,
+    "Rprecision": 1.0,
+    "Rrecall": 0.012875926021861888,
+    "Rf": 0.025424488214332335,
+    "ExistenceReward": 0.024,
+    "OverlapReward": 0.010094907527327357,
+    "RAUC": 0.48885897613697915,
+    "time": 26.900263786315918
+}

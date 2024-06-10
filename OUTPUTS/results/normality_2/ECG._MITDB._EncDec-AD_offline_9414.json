@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 90000,
+    "window": 125,
+    "AUC": 0.45987826577410207,
+    "Precision": 0.049639711769415534,
+    "Recall": 0.05743399722093562,
+    "F": 0.05325316727506979,
+    "Precision@k": 0.05743399722093562,
+    "Rprecision": 0.031395348837209305,
+    "Rrecall": 0.24814321262766945,
+    "Rf": 0.05573859063455392,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 0.060179015784586794,
+    "RAUC": 0.4491558576175283,
+    "time": 189.09619164466858
+}

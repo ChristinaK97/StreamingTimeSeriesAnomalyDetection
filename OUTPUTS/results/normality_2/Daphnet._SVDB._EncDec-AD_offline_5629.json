@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "Daphnet/S01R02E0.test.csv@1.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 73040,
+    "window": 70,
+    "AUC": 0.643504608159606,
+    "Precision": 0.028070175438596492,
+    "Recall": 0.0005793323195017742,
+    "F": 0.0011352348517099477,
+    "Precision@k": 0.0005793323195017742,
+    "Rprecision": 0.040160642570281124,
+    "Rrecall": 0.0032396783981614753,
+    "Rf": 0.005995696035788685,
+    "ExistenceReward": 0.015873015873015872,
+    "OverlapReward": 8.134402944787564e-05,
+    "RAUC": 0.7902672442918643,
+    "time": 84.48731303215027
+}

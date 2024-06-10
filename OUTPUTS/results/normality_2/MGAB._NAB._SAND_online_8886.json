@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "MGAB/1.test.out",
+        "NAB/NAB_data_Traffic_1.out"
+    ],
+    "series_length": 52499,
+    "window": 49,
+    "AUC": 0.8288398301477585,
+    "Precision": 0.3515151515151515,
+    "Recall": 0.3790849673202614,
+    "F": 0.36477987421383645,
+    "Precision@k": 0.3790849673202614,
+    "Rprecision": 0.25,
+    "Rrecall": 0.2552845528455285,
+    "Rf": 0.252614641995173,
+    "ExistenceReward": 0.3333333333333333,
+    "OverlapReward": 0.23577235772357721,
+    "RAUC": 0.8363904661411,
+    "time": 21.223244190216064
+}

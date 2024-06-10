@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Daphnet/S01R02E0.test.csv@1.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 78800,
+    "window": 70,
+    "AUC": 0.39221567585115025,
+    "Precision": 0.7952380952380952,
+    "Recall": 0.006046781084799768,
+    "F": 0.012002299841885871,
+    "Precision@k": 0.006046781084799768,
+    "Rprecision": 0.8104212860310421,
+    "Rrecall": 0.007777973997536082,
+    "Rf": 0.01540806988649447,
+    "ExistenceReward": 0.01984126984126984,
+    "OverlapReward": 0.004762150036602641,
+    "RAUC": 0.5147667470666416,
+    "time": 26.206228494644165
+}

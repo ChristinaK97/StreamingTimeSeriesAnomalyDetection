@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "MGAB/1.test.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 100000,
+    "window": 49,
+    "AUC": 0.47827533750562967,
+    "Precision": 0.12470588235294118,
+    "Recall": 0.0020282423175538634,
+    "F": 0.0039915649947281215,
+    "Precision@k": 0.0020282423175538634,
+    "Rprecision": 0.09872875845295016,
+    "Rrecall": 0.008054615482100647,
+    "Rf": 0.014894119881385054,
+    "ExistenceReward": 0.032,
+    "OverlapReward": 0.002068269352625808,
+    "RAUC": 0.6531927934520749,
+    "time": 29.264241218566895
+}

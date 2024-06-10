@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out"
+    ],
+    "series_length": 100000,
+    "window": 125,
+    "AUC": 0.9692110064648876,
+    "Precision": 0.7137891077636153,
+    "Recall": 0.24949372215471852,
+    "F": 0.36974789915966383,
+    "Precision@k": 0.24949372215471852,
+    "Rprecision": 0.8456038352611857,
+    "Rrecall": 0.2803333333333333,
+    "Rf": 0.4210731263346145,
+    "ExistenceReward": 0.375,
+    "OverlapReward": 0.25666666666666665,
+    "RAUC": 0.9863565881830978,
+    "time": 43.01900124549866
+}

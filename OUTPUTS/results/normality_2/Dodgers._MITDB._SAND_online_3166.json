@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out",
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 100000,
+    "window": 288,
+    "AUC": 0.8386783841699658,
+    "Precision": 0.7886178861788617,
+    "Recall": 0.01706244503078276,
+    "F": 0.03340220385674931,
+    "Precision@k": 0.01706244503078276,
+    "Rprecision": 0.23774509803921567,
+    "Rrecall": 0.005337423745584996,
+    "Rf": 0.010440457194156743,
+    "ExistenceReward": 0.015037593984962405,
+    "OverlapReward": 0.002912381185740643,
+    "RAUC": 0.8559950979946245,
+    "time": 30.63677978515625
+}

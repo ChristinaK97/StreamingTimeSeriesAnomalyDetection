@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 48143,
+    "window": 288,
+    "AUC": 0.6008583464230002,
+    "Precision": 0.9502212389380531,
+    "Recall": 0.2789866839883079,
+    "F": 0.43133316595531007,
+    "Precision@k": 0.2789866839883079,
+    "Rprecision": 0.5179267474180091,
+    "Rrecall": 0.14100101415256067,
+    "Rf": 0.22165767145282209,
+    "ExistenceReward": 0.15151515151515152,
+    "OverlapReward": 0.13837247981191297,
+    "RAUC": 0.7895238551275838,
+    "time": 217.45026683807373
+}

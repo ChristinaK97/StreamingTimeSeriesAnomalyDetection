@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out"
+    ],
+    "series_length": 52000,
+    "window": 91,
+    "AUC": 0.18753957004073074,
+    "Precision": 0.3508771929824561,
+    "Recall": 0.06493506493506493,
+    "F": 0.1095890410958904,
+    "Precision@k": 0.06493506493506493,
+    "Rprecision": 0.15384615384615385,
+    "Rrecall": 0.19837398373983742,
+    "Rf": 0.17329545454545456,
+    "ExistenceReward": 0.6666666666666666,
+    "OverlapReward": 0.0813008130081301,
+    "RAUC": 0.17605058926232858,
+    "time": 12.274338245391846
+}

@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 100000,
+    "window": 35,
+    "AUC": 0.3173154653677159,
+    "Precision": 0.04938271604938271,
+    "Recall": 0.00044119269090775394,
+    "F": 0.0008745718242110632,
+    "Precision@k": 0.00044119269090775394,
+    "Rprecision": 0.04471701138367805,
+    "Rrecall": 0.003588616820641971,
+    "Rf": 0.006644038187084558,
+    "ExistenceReward": 0.01606425702811245,
+    "OverlapReward": 0.00046970676877435084,
+    "RAUC": 0.43046159095677106,
+    "time": 23.911415338516235
+}

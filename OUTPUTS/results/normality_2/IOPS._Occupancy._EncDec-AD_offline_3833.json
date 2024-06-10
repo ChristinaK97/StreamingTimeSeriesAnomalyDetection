@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 48143,
+    "window": 125,
+    "AUC": 0.9686646767935547,
+    "Precision": 0.9502212389380531,
+    "Recall": 0.8990057561486133,
+    "F": 0.9239042753428341,
+    "Precision@k": 0.8990057561486133,
+    "Rprecision": 0.5179267474180091,
+    "Rrecall": 0.5030306450848111,
+    "Rf": 0.5103700267484756,
+    "ExistenceReward": 0.5405405405405406,
+    "OverlapReward": 0.49365317122087876,
+    "RAUC": 0.9474906480568073,
+    "time": 181.87111568450928
+}

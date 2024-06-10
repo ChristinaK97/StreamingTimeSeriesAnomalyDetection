@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "SensorScope/stb-2.test.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 31786,
+    "window": 13,
+    "AUC": 0.6695911803945451,
+    "Precision": 0.9527896995708155,
+    "Recall": 0.38332511100148003,
+    "F": 0.5467018469656992,
+    "Precision@k": 0.38332511100148003,
+    "Rprecision": 0.7142564746402587,
+    "Rrecall": 0.4945604778421581,
+    "Rf": 0.5844441917769677,
+    "ExistenceReward": 0.68,
+    "OverlapReward": 0.4482005973026976,
+    "RAUC": 0.6869949742241845,
+    "time": 124.946364402771
+}

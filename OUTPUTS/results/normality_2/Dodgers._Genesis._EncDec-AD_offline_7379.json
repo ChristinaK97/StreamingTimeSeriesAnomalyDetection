@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 2,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out",
+        "Genesis/genesis-anomalies.test.csv@1.out"
+    ],
+    "series_length": 56220,
+    "window": 288,
+    "AUC": 0.36628092299884485,
+    "Precision": 0.025041736227045076,
+    "Recall": 0.010046885465505693,
+    "F": 0.014340344168260041,
+    "Precision@k": 0.010046885465505693,
+    "Rprecision": 0.0034241958532179356,
+    "Rrecall": 0.020729562834825993,
+    "Rf": 0.005877518610233347,
+    "ExistenceReward": 0.02631578947368421,
+    "OverlapReward": 0.01933300617511144,
+    "RAUC": 0.5821270398316588,
+    "time": 240.24109172821045
+}

@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "MGAB/1.test.out",
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 100000,
+    "window": 49,
+    "AUC": 0.8000391089739997,
+    "Precision": 0.11819389110225764,
+    "Recall": 0.21241050119331742,
+    "F": 0.15187713310580206,
+    "Precision@k": 0.21241050119331742,
+    "Rprecision": 0.06784260515603799,
+    "Rrecall": 0.07479108635097494,
+    "Rf": 0.07114759615193522,
+    "ExistenceReward": 0.25,
+    "OverlapReward": 0.030988857938718663,
+    "RAUC": 0.753580354636508,
+    "time": 41.19094395637512
+}

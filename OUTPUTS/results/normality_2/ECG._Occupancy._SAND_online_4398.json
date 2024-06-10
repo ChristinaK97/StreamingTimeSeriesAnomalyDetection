@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 58143,
+    "window": 125,
+    "AUC": 0.9219565748326342,
+    "Precision": 0.9307958477508651,
+    "Recall": 0.1327084361124815,
+    "F": 0.23229706390328153,
+    "Precision@k": 0.1327084361124815,
+    "Rprecision": 0.93271258694037,
+    "Rrecall": 0.14882051282051284,
+    "Rf": 0.25668519166598225,
+    "ExistenceReward": 0.19230769230769232,
+    "OverlapReward": 0.13794871794871796,
+    "RAUC": 0.9530685598117867,
+    "time": 33.933133602142334
+}

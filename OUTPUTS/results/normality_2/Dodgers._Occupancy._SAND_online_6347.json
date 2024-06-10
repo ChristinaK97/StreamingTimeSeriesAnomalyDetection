@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 58143,
+    "window": 288,
+    "AUC": 0.8009328548696731,
+    "Precision": 0.7730061349693251,
+    "Recall": 0.03571934798015592,
+    "F": 0.0682834304294811,
+    "Precision@k": 0.03571934798015592,
+    "Rprecision": 0.2997810945273632,
+    "Rrecall": 0.02930458434015686,
+    "Rf": 0.053390110431990025,
+    "ExistenceReward": 0.0392156862745098,
+    "OverlapReward": 0.02682680885656862,
+    "RAUC": 0.8542327034178481,
+    "time": 10.383067607879639
+}

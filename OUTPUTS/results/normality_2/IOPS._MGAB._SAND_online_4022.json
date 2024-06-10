@@ -1,0 +1,23 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "MGAB/1.test.out"
+    ],
+    "series_length": 100000,
+    "window": 125,
+    "AUC": 0.7474089089069296,
+    "Precision": 0.23255813953488372,
+    "Recall": 0.07042253521126761,
+    "F": 0.10810810810810811,
+    "Precision@k": 0.07042253521126761,
+    "Rprecision": 0.23255813953488372,
+    "Rrecall": 0.045454545454545456,
+    "Rf": 0.07604562737642585,
+    "ExistenceReward": 0.045454545454545456,
+    "OverlapReward": 0.045454545454545456,
+    "RAUC": 0.7558294210232313,
+    "time": 257.90075612068176
+}

@@ -1,0 +1,24 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "SVDB/801.test.csv@1.out",
+        "ECG/MBA_ECG803_data.out",
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 90000,
+    "window": 146,
+    "AUC": 0.5235526669025473,
+    "Precision": 0.5796460176991151,
+    "Recall": 0.014746440029267744,
+    "F": 0.028761183379987926,
+    "Precision@k": 0.014746440029267744,
+    "Rprecision": 0.7480440457435363,
+    "Rrecall": 0.02008670853879872,
+    "Rf": 0.039122877549858784,
+    "ExistenceReward": 0.03636363636363636,
+    "OverlapReward": 0.016017476582589306,
+    "RAUC": 0.663603899177836,
+    "time": 336.55268383026123
+}

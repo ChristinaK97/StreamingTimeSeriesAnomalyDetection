@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Daphnet/S01R02E0.test.csv@1.out",
+        "SMD/machine-1-1.test.csv@1.out"
+    ],
+    "series_length": 45827,
+    "window": 70,
+    "AUC": 0.5068720705448209,
+    "Precision": 0.011673151750972763,
+    "Recall": 0.0008337965536409116,
+    "F": 0.001556420233463035,
+    "Precision@k": 0.0008337965536409116,
+    "Rprecision": 0.02702702702702703,
+    "Rrecall": 0.016927083333333332,
+    "Rf": 0.020816653322658127,
+    "ExistenceReward": 0.08333333333333333,
+    "OverlapReward": 0.0003255208333333333,
+    "RAUC": 0.5072966700889003,
+    "time": 173.30139708518982
+}

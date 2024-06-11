@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 42007,
+    "window": 91,
+    "AUC": 0.9471299530413779,
+    "Precision": 0.027149321266968326,
+    "Recall": 0.04081632653061224,
+    "F": 0.032608695652173905,
+    "Precision@k": 0.04081632653061224,
+    "Rprecision": 0.014388489208633094,
+    "Rrecall": 0.14390243902439026,
+    "Rf": 0.026161179470125265,
+    "ExistenceReward": 0.5,
+    "OverlapReward": 0.054878048780487805,
+    "RAUC": 0.9513225563403049,
+    "time": 190.70082759857178
+}

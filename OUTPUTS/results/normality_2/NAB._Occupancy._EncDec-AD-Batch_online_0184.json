@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 8521,
+    "window": 91,
+    "AUC": 0.8013773514530582,
+    "Precision": 0.8807947019867549,
+    "Recall": 0.23623445825932504,
+    "F": 0.3725490196078431,
+    "Precision@k": 0.23623445825932504,
+    "Rprecision": 0.14105271039233305,
+    "Rrecall": 0.15126189126189127,
+    "Rf": 0.14597902137504662,
+    "ExistenceReward": 0.18181818181818182,
+    "OverlapReward": 0.14362281862281862,
+    "RAUC": 0.7495601246891243,
+    "time": 62.465545654296875
+}

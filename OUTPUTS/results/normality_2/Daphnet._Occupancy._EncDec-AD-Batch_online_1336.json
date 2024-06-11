@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Daphnet/S01R02E0.test.csv@1.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 29562,
+    "window": 70,
+    "AUC": 0.505146774985324,
+    "Precision": 0.9898477157360406,
+    "Recall": 0.2936746987951807,
+    "F": 0.45296167247386754,
+    "Precision@k": 0.2936746987951807,
+    "Rprecision": 0.4941206199460917,
+    "Rrecall": 0.2954565772669221,
+    "Rf": 0.369795854392933,
+    "ExistenceReward": 0.3125,
+    "OverlapReward": 0.2911957215836526,
+    "RAUC": 0.5145604348849389,
+    "time": 145.03636932373047
+}

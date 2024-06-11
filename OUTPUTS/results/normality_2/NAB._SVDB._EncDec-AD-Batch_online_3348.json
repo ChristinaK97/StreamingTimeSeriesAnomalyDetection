@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 42007,
+    "window": 91,
+    "AUC": 0.522166549724171,
+    "Precision": 0.8440111420612814,
+    "Recall": 0.014162849397027204,
+    "F": 0.02785822645152393,
+    "Precision@k": 0.014162849397027204,
+    "Rprecision": 0.9032258064516129,
+    "Rrecall": 0.11963673693975674,
+    "Rf": 0.21128740885432054,
+    "ExistenceReward": 0.5396039603960396,
+    "OverlapReward": 0.014644931075686011,
+    "RAUC": 0.6946614106570552,
+    "time": 189.47394585609436
+}

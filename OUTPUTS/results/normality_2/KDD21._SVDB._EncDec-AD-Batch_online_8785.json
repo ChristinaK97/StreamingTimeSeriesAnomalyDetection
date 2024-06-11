@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "KDD21/001_UCR_Anomaly_DISTORTED1sddb40_35000_52000_52620.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 80000,
+    "window": 208,
+    "AUC": 0.2114143596612744,
+    "Precision": 0.005945303210463734,
+    "Recall": 0.0002437359851808521,
+    "F": 0.0004682744088035589,
+    "Precision@k": 0.0002437359851808521,
+    "Rprecision": 0.032679738562091505,
+    "Rrecall": 0.005382381612273422,
+    "Rf": 0.009242513192891984,
+    "ExistenceReward": 0.026041666666666668,
+    "OverlapReward": 0.0002175603486751117,
+    "RAUC": 0.20946265574932857,
+    "time": 328.176429271698
+}

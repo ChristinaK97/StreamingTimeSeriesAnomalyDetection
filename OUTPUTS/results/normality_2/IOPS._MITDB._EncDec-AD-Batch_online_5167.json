@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 80000,
+    "window": 125,
+    "AUC": 0.50777874588017,
+    "Precision": 0.08452722063037249,
+    "Recall": 0.12526539278131635,
+    "F": 0.1009409751924722,
+    "Precision@k": 0.12526539278131635,
+    "Rprecision": 0.14883720930232558,
+    "Rrecall": 0.3084422594948911,
+    "Rf": 0.20078611994050125,
+    "ExistenceReward": 0.8421052631578947,
+    "OverlapReward": 0.17502650857914018,
+    "RAUC": 0.9122458692612083,
+    "time": 335.8178913593292
+}

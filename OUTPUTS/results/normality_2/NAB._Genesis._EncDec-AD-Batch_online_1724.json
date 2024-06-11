@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "Genesis/genesis-anomalies.test.csv@1.out"
+    ],
+    "series_length": 14977,
+    "window": 125,
+    "AUC": 0.701806849080536,
+    "Precision": 0.148,
+    "Recall": 0.125,
+    "F": 0.13553113553113552,
+    "Precision@k": 0.125,
+    "Rprecision": 0.07094594594594594,
+    "Rrecall": 0.37841453939014924,
+    "Rf": 0.11948971185863662,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 0.22301817423768644,
+    "RAUC": 0.7264247655176397,
+    "time": 73.10904335975647
+}

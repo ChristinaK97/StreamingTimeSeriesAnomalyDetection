@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 46522,
+    "window": 125,
+    "AUC": 0.7742893415963579,
+    "Precision": 0.8946587537091988,
+    "Recall": 0.1874417158843643,
+    "F": 0.30994602929838083,
+    "Precision@k": 0.1874417158843643,
+    "Rprecision": 0.4333519013666072,
+    "Rrecall": 0.28881258941344784,
+    "Rf": 0.34661766497474955,
+    "ExistenceReward": 0.28888888888888886,
+    "OverlapReward": 0.2887935145445875,
+    "RAUC": 0.8123707148995272,
+    "time": 154.62810397148132
+}

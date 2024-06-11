@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "Daphnet/S01R02E0.test.csv@1.out"
+    ],
+    "series_length": 25047,
+    "window": 70,
+    "AUC": 0.6810684439771132,
+    "Precision": 0.005128205128205128,
+    "Recall": 0.0005844535359438924,
+    "F": 0.001049317943336831,
+    "Precision@k": 0.0005844535359438924,
+    "Rprecision": 0.01639344262295082,
+    "Rrecall": 0.02996515679442509,
+    "Rf": 0.021192705766387387,
+    "ExistenceReward": 0.14285714285714285,
+    "OverlapReward": 0.0017421602787456446,
+    "RAUC": 0.7239123306942252,
+    "time": 98.39449620246887
+}

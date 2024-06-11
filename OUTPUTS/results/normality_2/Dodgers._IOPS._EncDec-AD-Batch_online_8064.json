@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Dodgers/101-freeway-traffic.test.out",
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out"
+    ],
+    "series_length": 80000,
+    "window": 288,
+    "AUC": 0.629929968192064,
+    "Precision": 0.3767123287671233,
+    "Recall": 0.012127894156560088,
+    "F": 0.023499252296517836,
+    "Precision@k": 0.012127894156560088,
+    "Rprecision": 0.34831460674157305,
+    "Rrecall": 0.044125744047619056,
+    "Rf": 0.07832854676751565,
+    "ExistenceReward": 0.1171875,
+    "OverlapReward": 0.025860305059523813,
+    "RAUC": 0.8355036419649001,
+    "time": 358.84509348869324
+}

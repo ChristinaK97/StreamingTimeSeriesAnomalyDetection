@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 46522,
+    "window": 125,
+    "AUC": 0.9392723317142107,
+    "Precision": 0.8946587537091988,
+    "Recall": 0.4513473053892216,
+    "F": 0.6,
+    "Precision@k": 0.4513473053892216,
+    "Rprecision": 0.4333519013666072,
+    "Rrecall": 0.6840298170318501,
+    "Rf": 0.53057181251734,
+    "ExistenceReward": 0.6842105263157895,
+    "OverlapReward": 0.6839846397108652,
+    "RAUC": 0.9265384633469842,
+    "time": 170.7576823234558
+}

@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "KDD21/001_UCR_Anomaly_DISTORTED1sddb40_35000_52000_52620.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 46522,
+    "window": 208,
+    "AUC": 0.9438432479490448,
+    "Precision": 0.03203342618384401,
+    "Recall": 0.03859060402684564,
+    "F": 0.0350076103500761,
+    "Precision@k": 0.03859060402684564,
+    "Rprecision": 0.03256846780162842,
+    "Rrecall": 0.10722141491970157,
+    "Rf": 0.04996122940339953,
+    "ExistenceReward": 0.2222222222222222,
+    "OverlapReward": 0.0784712130940714,
+    "RAUC": 0.9324275516133383,
+    "time": 143.26167607307434
+}

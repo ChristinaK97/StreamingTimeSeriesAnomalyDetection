@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 80000,
+    "window": 125,
+    "AUC": 0.8266520897232434,
+    "Precision": 0.3754752851711027,
+    "Recall": 0.01756414246965183,
+    "F": 0.03355847245231723,
+    "Precision@k": 0.01756414246965183,
+    "Rprecision": 0.21628935727296383,
+    "Rrecall": 0.09480959945191972,
+    "Rf": 0.1318314117452818,
+    "ExistenceReward": 0.39545454545454545,
+    "OverlapReward": 0.01964836295126328,
+    "RAUC": 0.9143657669784635,
+    "time": 326.6811475753784
+}

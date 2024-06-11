@@ -1,0 +1,23 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "Genesis/genesis-anomalies.test.csv@1.out",
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 19493,
+    "window": 125,
+    "AUC": 0.5277487146899517,
+    "Precision": 0.8333333333333334,
+    "Recall": 0.35584604212055193,
+    "F": 0.49872773536895676,
+    "Precision@k": 0.35584604212055193,
+    "Rprecision": 0.6956521739130435,
+    "Rrecall": 0.13211040030512647,
+    "Rf": 0.22205132251983448,
+    "ExistenceReward": 0.29411764705882354,
+    "OverlapReward": 0.09160858861670221,
+    "RAUC": 0.5964535583822115,
+    "time": 103.84252905845642
+}

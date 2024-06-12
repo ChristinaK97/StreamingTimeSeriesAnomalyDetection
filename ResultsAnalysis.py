@@ -63,8 +63,26 @@ def print_sep_df_per_dataset(df: pd.DataFrame):
         print("\n", "-"*100)
 
 
+def get_results_for_datasets_with_all_models (df, num_of_models = 4):
+    datasets_with_all_results = df[['datasets', 'model']].groupby(by=['datasets']).count().reset_index()
+    datasets_with_all_results = datasets_with_all_results[datasets_with_all_results['model'] >= num_of_models].reset_index(drop=True)
+    datasets_with_all_results = set(datasets_with_all_results['datasets'].values)
+    print("selected datasets # ", len(datasets_with_all_results))
+    selected_results_df = df[df['datasets'].isin(datasets_with_all_results)]
+    return selected_results_df
+
+
+normality = 2
+num_of_models = 4
+filter_results = True
+
 df = read_files()
 df = sort_df(df)
 df = clean_up_df(df)
-df = df[df['normality'] == 2]
+df = df[df['normality'] == normality]
+
+if filter_results:
+    df = get_results_for_datasets_with_all_models(df, num_of_models)
+
 print_sep_df_per_dataset(df)
+

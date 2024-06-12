@@ -92,11 +92,7 @@ class EncDecAD(Algorithm, PyTorchUtils):
             data_loader = DataLoader(dataset=sequences, batch_size=batch_size, shuffle=False, drop_last=False)
 
             self.lstmed.eval()
-            try:
-                mvnormal = multivariate_normal(self.mean, self.cov, allow_singular=True)
-            except ValueError:
-                print()
-
+            mvnormal = multivariate_normal(self.mean, self.cov, allow_singular=True)
             scores = []
             outputs = []
             errors = []

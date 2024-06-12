@@ -1,6 +1,9 @@
 # StreamingTimeSeriesAnomalyDetection
 Mining from Massive Datasets Assignment
 
+### REPORT DOCUMENT LINK
+[Report](https://aristotleuniversity-my.sharepoint.com/:w:/g/personal/kchristi_office365_auth_gr/ETiycbkhKl5PrxVD0GtVZS8BLHUS7wqk7581xY9O2Ul1uA?e=7KmeR6)
+
 ### Project Directory Structure:
 StreamingTimeSeriesAnomalyDetection (base directory) <br>
 |-- TSB-UAD (cloned from the original [github repo](https://github.com/TheDatumOrg/TSB-UAD/)) <br>

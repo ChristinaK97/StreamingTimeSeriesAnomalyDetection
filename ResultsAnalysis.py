@@ -93,6 +93,8 @@ def print_datasets_x_model_pivot_table(df):
     model_order_dict = {model: idx for idx, model in enumerate(model_order)}
     df_copy = df.copy()
     df_copy['model'] = df_copy['model'].apply(lambda x: f'{model_order_dict[x]}. {x}')
+    for metric in ['AUC', 'F', 'Precision', 'Recall']:
+        df_copy[metric] = (df_copy[metric] * 100).round(2)
 
     pivot_df = df_copy[['datasets', 'model', 'AUC', 'F']].pivot(index="datasets", columns="model")
     pivot_df.columns = pd.MultiIndex.from_tuples([(metric, model) for model, metric in pivot_df.columns])

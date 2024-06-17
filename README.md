@@ -55,3 +55,8 @@ python -m ipykernel install --user --name=TSB
   # Found existing installation: scikit-learn 1.3.2
   pip install scikit-learn==0.23.0
   ```
+  
+### Additional Requirements
+  ```
+  pip install openpyxl
+  ```

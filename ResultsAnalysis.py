@@ -94,7 +94,7 @@ def print_datasets_x_model_pivot_table(df):
     df_copy = df.copy()
     df_copy['model'] = df_copy['model'].apply(lambda x: f'{model_order_dict[x]}. {x}')
     for metric in ['AUC', 'F', 'Precision', 'Recall']:
-        df_copy[metric] = (df_copy[metric] * 100).round(2)
+        df_copy[metric] = df_copy[metric] * 100
 
     pivot_df = df_copy[['datasets', 'model', 'AUC', 'F']].pivot(index="datasets", columns="model")
     pivot_df.columns = pd.MultiIndex.from_tuples([(metric, model) for model, metric in pivot_df.columns])
@@ -106,8 +106,20 @@ def print_datasets_x_model_pivot_table(df):
     average_row = pivot_df[pivot_df['datasets'] == 'Average']
     pivot_df = pivot_df[pivot_df['datasets'] != 'Average']
     pivot_df = pd.concat([pivot_df, average_row])
+
+    pivot_df = pivot_df.applymap(lambda x: '{:.2f}'.format(x) if isinstance(x, float) else x)
     print(pivot_df)
     # print(pivot_df.to_string(index=False), "\n")
+
+    # Save to Excel
+    pivot_df.columns = ['_'.join(col) if isinstance(col, tuple) else col for col in pivot_df.columns]
+    output_file = Path(f"OUTPUTS/Norm_{int(df['normality'].values[0])}_pivot.xlsx")
+    pivot_df.to_excel(output_file, index=False, engine="openpyxl")
+
+
+
+
+
 
 
 

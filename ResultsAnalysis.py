@@ -147,22 +147,24 @@ def make_boxplot(df):
 
 # ============================================================================================================
 
-normality = 1
-num_of_models = 3
-filter_results = False
+def prepare_results_df(normality, num_of_models = 4, filter_results = False):
+    df = read_files()
+    df = df[df['normality'] == normality]
+    df = sort_df(df)
+    df = clean_up_df(df)
+    df = add_average_values_per_model(df)
 
-df = read_files()
-df = df[df['normality'] == normality]
-df = sort_df(df)
-df = clean_up_df(df)
-df = add_average_values_per_model(df)
+    if filter_results:
+        df = get_results_for_datasets_with_all_models(df, num_of_models)
+    return df
 
-if filter_results:
-    df = get_results_for_datasets_with_all_models(df, num_of_models)
 
-print_sep_df_per_dataset(df)
-print_datasets_x_model_pivot_table(df)
-make_boxplot(df)
+if __name__ == "__main__":
+    df = prepare_results_df(2)
+    print_sep_df_per_dataset(df)
+    print_datasets_x_model_pivot_table(df)
+    make_boxplot(df)
+
 
 
 

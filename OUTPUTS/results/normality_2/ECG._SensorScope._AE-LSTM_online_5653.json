@@ -1,0 +1,34 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 79553,
+    "window": 125,
+    "AUC": 0.5481855861704897,
+    "Precision": 0.18637274549098196,
+    "Recall": 0.15240904621435594,
+    "F": 0.16768842408943382,
+    "Precision@k": 0.15240904621435594,
+    "Rprecision": 0.09536505835049525,
+    "Rrecall": 0.2782309224432599,
+    "Rf": 0.1420438629844977,
+    "ExistenceReward": 0.8947368421052632,
+    "OverlapReward": 0.12410444252775905,
+    "RAUC": 0.5461015342413935,
+    "Accuracy": 0.8824742530520795,
+    "confusion_matrix": [
+        [
+            68391,
+            4060
+        ],
+        [
+            5172,
+            930
+        ]
+    ],
+    "time": 2612.2657611370087
+}

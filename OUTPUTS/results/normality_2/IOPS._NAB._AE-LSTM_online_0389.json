@@ -1,0 +1,34 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "NAB/NAB_data_Traffic_1.out"
+    ],
+    "series_length": 52499,
+    "window": 125,
+    "AUC": 0.6326204373566471,
+    "Precision": 0.15995115995115994,
+    "Recall": 0.27872340425531916,
+    "F": 0.20325833979829325,
+    "Precision@k": 0.0,
+    "Rprecision": 0.09498564170532361,
+    "Rrecall": 0.38747150115221063,
+    "Rf": 0.15256994211540054,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 0.23433937644026334,
+    "RAUC": 0.5784923321388937,
+    "Accuracy": 0.980057865201266,
+    "confusion_matrix": [
+        [
+            50341,
+            688
+        ],
+        [
+            339,
+            131
+        ]
+    ],
+    "time": 961.564642906189
+}

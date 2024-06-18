@@ -160,7 +160,7 @@ def prepare_results_df(normality, num_of_models = 4, filter_results = False):
 
 
 if __name__ == "__main__":
-    df = prepare_results_df(2)
+    df = prepare_results_df(2, 5, True)
     print_sep_df_per_dataset(df)
     print_datasets_x_model_pivot_table(df)
     make_boxplot(df)

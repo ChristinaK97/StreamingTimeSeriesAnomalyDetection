@@ -1,0 +1,34 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 2,
+    "datasets": [
+        "SensorScope/stb-2.test.out",
+        "SMD/machine-1-1.test.csv@1.out"
+    ],
+    "series_length": 58032,
+    "window": 13,
+    "AUC": 0.5411446008178898,
+    "Precision": 0.43243243243243246,
+    "Recall": 0.09890279709473034,
+    "F": 0.1609860394918878,
+    "Precision@k": 0.09890279709473034,
+    "Rprecision": 0.3375972611266729,
+    "Rrecall": 0.17765894587275757,
+    "Rf": 0.232805244173841,
+    "ExistenceReward": 0.8,
+    "OverlapReward": 0.022073682340946938,
+    "RAUC": 0.5392402182648531,
+    "Accuracy": 0.8830305793238884,
+    "confusion_matrix": [
+        [
+            49721,
+            840
+        ],
+        [
+            5831,
+            640
+        ]
+    ],
+    "time": 1607.336201429367
+}

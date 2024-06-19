@@ -152,10 +152,10 @@ def prepare_results_df(normality, num_of_models = 4, filter_results = False):
     df = df[df['normality'] == normality]
     df = sort_df(df)
     df = clean_up_df(df)
-    df = add_average_values_per_model(df)
-
     if filter_results:
         df = get_results_for_datasets_with_all_models(df, num_of_models)
+    df = add_average_values_per_model(df)
+
     return df
 
 

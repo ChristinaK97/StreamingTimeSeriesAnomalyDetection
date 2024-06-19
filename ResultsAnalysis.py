@@ -13,7 +13,7 @@ pd.set_option('display.width', 5000)
 
 
 def read_files():
-    results_path = "C:/Users/karal/progr/Python/Mining_Massive_Datasets/StreamingTimeSeriesAnomalyDetection/OUTPUTS/results"
+    results_path = "OUTPUTS/results"
     results_path = Path(results_path)
     pattern = os.path.join(results_path, '**', '*.json')
     json_files = glob.glob(pattern, recursive=True)
@@ -87,7 +87,10 @@ def get_results_for_datasets_with_all_models (df, num_of_models = 4):
     return selected_results_df
 
 
-def print_datasets_x_model_pivot_table(df):
+def get_datasets_x_model_pivot_table(df, metrics=None, print_=True, save=True):
+
+    if metrics is None:
+        metrics = ['AUC', 'F']
 
     model_order = ['SAND', 'Offline-EncDec-AD', 'EncDec-AD-Batch', 'Online-EncDec-AD', 'AE-LSTM']
     model_order_dict = {model: idx for idx, model in enumerate(model_order)}
@@ -96,7 +99,7 @@ def print_datasets_x_model_pivot_table(df):
     for metric in ['AUC', 'F', 'Precision', 'Recall']:
         df_copy[metric] = df_copy[metric] * 100
 
-    pivot_df = df_copy[['datasets', 'model', 'AUC', 'F']].pivot(index="datasets", columns="model")
+    pivot_df = df_copy[['datasets', 'model'] + metrics].pivot(index="datasets", columns="model")
     pivot_df.columns = pd.MultiIndex.from_tuples([(metric, model) for model, metric in pivot_df.columns])
     pivot_df = pivot_df.sort_index(axis=1)
     pivot_df.reset_index(inplace=True)
@@ -108,38 +111,40 @@ def print_datasets_x_model_pivot_table(df):
     pivot_df = pd.concat([pivot_df, average_row])
 
     pivot_df = pivot_df.applymap(lambda x: '{:.2f}'.format(x) if isinstance(x, float) else x)
-    print(pivot_df)
+    if print_:
+        print(pivot_df)
     # print(pivot_df.to_string(index=False), "\n")
 
     # Save to Excel
     pivot_df.columns = ['_'.join(col) if isinstance(col, tuple) else col for col in pivot_df.columns]
-    output_file = Path(f"OUTPUTS/Norm_{int(df['normality'].values[0])}_pivot.xlsx")
-    pivot_df.to_excel(output_file, index=False, engine="openpyxl")
-
-
-
-
+    if save:
+        output_file = Path(f"OUTPUTS/Norm_{int(df['normality'].values[0])}_pivot.xlsx")
+        pivot_df.to_excel(output_file, index=False, engine="openpyxl")
+    return pivot_df
 
 
 
 
 def make_boxplot(df):
-    fig, axes = plt.subplots(1, 4, figsize=(18, 6))
+    sns.set_theme(style="darkgrid")
+    fig, axes = plt.subplots(1, 4, figsize=(13, 4.5))
     # Plot each metric
     metrics = ['AUC', 'F', 'Recall', 'Precision']
     titles = ['AUC', 'F1 Score', 'Recall', 'Precision']
     model_order = ['SAND', 'Offline-EncDec-AD', 'EncDec-AD-Batch', 'Online-EncDec-AD', 'AE-LSTM']
+    model_short_names = ['SAND', 'Offline', 'Batch', 'Online', 'AE-LSTM']
 
     for ax, metric, title in zip(axes, metrics, titles):
 
         # TODO: should drop 0 values for plot? (SAND results are the most problematic -> completely different plot)
         df_without_zeros = df[df[metric] > 0.]
 
-        sns.boxplot(x='model', y=metric, data=df, ax=ax, order=model_order)
+        sns.boxplot(x='model', y=metric, data=df, ax=ax, order=model_order, width=0.8, hue='model', palette=sns.color_palette('deep',5))
         ax.set_title(title)
         ax.set_xlabel('Model')
         ax.set_ylabel(None)
-        ax.tick_params(axis='x', rotation=30)
+        ax.tick_params(axis='x', rotation=20)
+        ax.set_xticklabels(model_short_names)
 
     # Adjust layout
     plt.tight_layout()
@@ -162,7 +167,7 @@ def prepare_results_df(normality, num_of_models = 4, filter_results = False):
 if __name__ == "__main__":
     df = prepare_results_df(2, 5, True)
     print_sep_df_per_dataset(df)
-    print_datasets_x_model_pivot_table(df)
+    get_datasets_x_model_pivot_table(df)
     make_boxplot(df)
 
 

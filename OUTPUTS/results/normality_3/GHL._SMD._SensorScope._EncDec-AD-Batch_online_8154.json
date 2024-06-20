@@ -1,0 +1,24 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out",
+        "SMD/machine-1-1.test.csv@1.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 86431,
+    "window": 125,
+    "AUC": 0.7428644952091773,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.7203690515744587,
+    "time": 258.97564721107483
+}

@@ -110,7 +110,7 @@ def get_datasets_x_model_pivot_table(df, metrics=None, print_=True, save=True):
     pivot_df = pivot_df[pivot_df['datasets'] != 'Average']
     pivot_df = pd.concat([pivot_df, average_row])
 
-    pivot_df = pivot_df.applymap(lambda x: '{:.2f}'.format(x) if isinstance(x, float) else x)
+    pivot_df = pivot_df.applymap(lambda x: float('{:.2f}'.format(x)) if isinstance(x, float) else x)
     if print_:
         print(pivot_df)
     # print(pivot_df.to_string(index=False), "\n")
@@ -150,6 +150,59 @@ def make_boxplot(df):
     plt.tight_layout()
     plt.show()
 
+
+def correlations(pivot_mat):
+    anomaly_ratios = [
+        5.37,
+        11.13,
+        4.65,
+        0.14,
+        0.31,
+        0.46,
+        0.78,
+        0.20,
+        1.40,
+        9.84,
+        2.23,
+        21.23,
+        9.46,
+        28.99,
+        12.78,
+        0.14,
+        None
+    ]
+    rc = [
+        2.38,
+        2.02,
+        8.33,
+        27.24,
+        2.28,
+        3.33,
+        10.67,
+        27.64,
+        7.19,
+        2.67,
+        2.94,
+        2.53,
+        3.39,
+        7.14,
+        2.38,
+        3.25,
+        None
+    ]
+    pivot_mat['anomaly ratio'] = anomaly_ratios
+    pivot_mat['rc'] = rc
+
+    correlation_matrix = pivot_mat.corr()[['anomaly ratio', 'rc']]
+    print(correlation_matrix)
+
+    plt.figure(figsize=(12,10))  # Adjust the figure size as needed
+    sns.heatmap(correlation_matrix.transpose(), annot=True, cmap='coolwarm', vmin=-2, vmax=2, fmt='.2f', linewidths=.5, square=True)
+    plt.tick_params(axis='x', rotation=20)
+    plt.title('Correlation Heatmap')
+    plt.show()
+
+
 # ============================================================================================================
 
 def prepare_results_df(normality, num_of_models = 4, filter_results = False):
@@ -165,11 +218,11 @@ def prepare_results_df(normality, num_of_models = 4, filter_results = False):
 
 
 if __name__ == "__main__":
-    df = prepare_results_df(2, 5, True)
+    df = prepare_results_df(3, 5, False)
     print_sep_df_per_dataset(df)
-    get_datasets_x_model_pivot_table(df)
+    pivot_map = get_datasets_x_model_pivot_table(df)
     make_boxplot(df)
-
+    # correlations(pivot_map)
 
 
 

@@ -1,0 +1,24 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 3,
+    "datasets": [
+        "MGAB/1.test.out",
+        "ECG/MBA_ECG803_data.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 119553,
+    "window": 49,
+    "AUC": 0.8179047813150782,
+    "Precision": 0.4433497536945813,
+    "Recall": 0.014605647517039922,
+    "F": 0.028279654359780047,
+    "Precision@k": 0.014605647517039922,
+    "Rprecision": 0.32608695652173914,
+    "Rrecall": 0.004947818250530539,
+    "Rf": 0.009747731161163635,
+    "ExistenceReward": 0.024390243902439025,
+    "OverlapReward": 8.721183755341725e-05,
+    "RAUC": 0.7805063987373109,
+    "time": 119.42868208885193
+}

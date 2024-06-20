@@ -1,0 +1,24 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "SensorScope/stb-2.test.out",
+        "ECG/MBA_ECG803_data.out",
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out"
+    ],
+    "series_length": 103643,
+    "window": 13,
+    "AUC": 0.6414950141694772,
+    "Precision": 0.7,
+    "Recall": 0.013474494706448507,
+    "F": 0.02644003777148253,
+    "Precision@k": 0.013474494706448507,
+    "Rprecision": 0.6904761904761905,
+    "Rrecall": 0.006743386352115957,
+    "Rf": 0.013356330986858561,
+    "ExistenceReward": 0.03333333333333333,
+    "OverlapReward": 9.589960681161208e-05,
+    "RAUC": 0.6367417648687551,
+    "time": 318.1808707714081
+}

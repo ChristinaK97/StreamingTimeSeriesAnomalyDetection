@@ -1,0 +1,24 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "MGAB/1.test.out",
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out",
+        "ECG/MBA_ECG803_data.out"
+    ],
+    "series_length": 120000,
+    "window": 49,
+    "AUC": 0.6921540606330647,
+    "Precision": 0.8398533007334963,
+    "Recall": 0.22175597159457713,
+    "F": 0.3508682328907048,
+    "Precision@k": 0.22175597159457713,
+    "Rprecision": 0.19544807965860597,
+    "Rrecall": 0.034482758620689655,
+    "Rf": 0.05862274938134654,
+    "ExistenceReward": 0.034482758620689655,
+    "OverlapReward": 0.034482758620689655,
+    "RAUC": 0.6712196803557041,
+    "time": 337.65853118896484
+}

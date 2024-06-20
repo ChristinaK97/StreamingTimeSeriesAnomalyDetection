@@ -1,0 +1,24 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "MITDB/100.test.csv@1.out",
+        "Occupancy/room-occupancy.train.csv@3.out",
+        "SVDB/801.test.csv@1.out"
+    ],
+    "series_length": 108143,
+    "window": 285,
+    "AUC": 0.4064149747098466,
+    "Precision": 0.10882708585247884,
+    "Recall": 0.009588408679285485,
+    "F": 0.017624020887728457,
+    "Precision@k": 0.009588408679285485,
+    "Rprecision": 0.05634960270503682,
+    "Rrecall": 0.0295252312239543,
+    "Rf": 0.038747907230187964,
+    "ExistenceReward": 0.03717472118959108,
+    "OverlapReward": 0.0276128587325451,
+    "RAUC": 0.5841596370162331,
+    "time": 36.06487822532654
+}

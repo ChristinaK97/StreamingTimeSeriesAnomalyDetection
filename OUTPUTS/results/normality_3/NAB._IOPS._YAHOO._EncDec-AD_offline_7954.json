@@ -1,0 +1,24 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 3,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 53420,
+    "window": 91,
+    "AUC": 0.3237275465749914,
+    "Precision": 0.3448275862068966,
+    "Recall": 0.05128205128205128,
+    "F": 0.08928571428571429,
+    "Precision@k": 0.05128205128205128,
+    "Rprecision": 0.15384615384615385,
+    "Rrecall": 0.02587486744432662,
+    "Rf": 0.044299201161946265,
+    "ExistenceReward": 0.08695652173913043,
+    "OverlapReward": 0.010604453870625663,
+    "RAUC": 0.8130244012911607,
+    "time": 19.09723663330078
+}

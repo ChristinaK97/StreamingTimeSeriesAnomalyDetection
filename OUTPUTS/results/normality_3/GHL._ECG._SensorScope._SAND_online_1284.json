@@ -1,0 +1,24 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out",
+        "ECG/MBA_ECG803_data.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 129553,
+    "window": 125,
+    "AUC": 0.8546684621846499,
+    "Precision": 0.4795673076923077,
+    "Recall": 0.06388088376560999,
+    "F": 0.11274371291325233,
+    "Precision@k": 0.06388088376560999,
+    "Rprecision": 0.6317067356858318,
+    "Rrecall": 0.14502564102564103,
+    "Rf": 0.2358950831196882,
+    "ExistenceReward": 0.1794871794871795,
+    "OverlapReward": 0.1364102564102564,
+    "RAUC": 0.9310793876298196,
+    "time": 89.73828887939453
+}

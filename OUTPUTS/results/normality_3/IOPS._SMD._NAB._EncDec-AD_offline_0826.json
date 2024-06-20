@@ -1,0 +1,24 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 3,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "SMD/machine-1-1.test.csv@1.out",
+        "NAB/NAB_data_Traffic_1.out"
+    ],
+    "series_length": 70978,
+    "window": 125,
+    "AUC": 0.6395275116080312,
+    "Precision": 0.2653061224489796,
+    "Recall": 0.012491992312620116,
+    "F": 0.02386050780055063,
+    "Precision@k": 0.012491992312620116,
+    "Rprecision": 0.2625,
+    "Rrecall": 0.02818428184281843,
+    "Rf": 0.05090315814007691,
+    "ExistenceReward": 0.1111111111111111,
+    "OverlapReward": 0.007452574525745257,
+    "RAUC": 0.698388407997618,
+    "time": 99.80434727668762
+}

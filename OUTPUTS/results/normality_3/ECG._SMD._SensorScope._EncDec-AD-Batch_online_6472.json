@@ -1,0 +1,24 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "ECG/MBA_ECG803_data.out",
+        "SMD/machine-1-1.test.csv@1.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 86431,
+    "window": 125,
+    "AUC": 0.7625865363303767,
+    "Precision": 0.0,
+    "Recall": 0.0,
+    "F": 0.0,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.764177698014584,
+    "time": 244.62109875679016
+}

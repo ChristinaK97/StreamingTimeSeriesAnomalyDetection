@@ -1,0 +1,24 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "SensorScope/stb-2.test.out",
+        "ECG/MBA_ECG803_data.out",
+        "MGAB/1.test.out"
+    ],
+    "series_length": 129553,
+    "window": 13,
+    "AUC": 0.5147225709258165,
+    "Precision": 0.14285714285714285,
+    "Recall": 0.0004868549172346641,
+    "F": 0.000970402717127608,
+    "Precision@k": 0.0004868549172346641,
+    "Rprecision": 0.5,
+    "Rrecall": 0.005658536585365854,
+    "Rf": 0.011190430252749375,
+    "ExistenceReward": 0.024390243902439025,
+    "OverlapReward": 0.000975609756097561,
+    "RAUC": 0.5285362473091736,
+    "time": 20.01081156730652
+}

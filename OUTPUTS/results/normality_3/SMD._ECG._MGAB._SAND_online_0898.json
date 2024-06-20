@@ -1,0 +1,24 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "SMD/machine-1-1.test.csv@1.out",
+        "ECG/MBA_ECG803_data.out",
+        "MGAB/1.test.out"
+    ],
+    "series_length": 128479,
+    "window": 279,
+    "AUC": 0.8006248597922676,
+    "Precision": 0.08888888888888889,
+    "Recall": 0.007875566056310297,
+    "F": 0.014469162597214685,
+    "Precision@k": 0.007875566056310297,
+    "Rprecision": 0.07181744468898413,
+    "Rrecall": 0.047619047619047616,
+    "Rf": 0.05726689142382117,
+    "ExistenceReward": 0.047619047619047616,
+    "OverlapReward": 0.047619047619047616,
+    "RAUC": 0.8690275757100225,
+    "time": 48.21642208099365
+}

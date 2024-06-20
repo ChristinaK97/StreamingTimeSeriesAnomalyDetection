@@ -1,0 +1,24 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 3,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "SMD/machine-1-1.test.csv@1.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 98032,
+    "window": 125,
+    "AUC": 0.5685088941352634,
+    "Precision": 0.4827586206896552,
+    "Recall": 0.010521569216894634,
+    "F": 0.020594292438952635,
+    "Precision@k": 0.010521569216894634,
+    "Rprecision": 0.4606741573033708,
+    "Rrecall": 0.09310858928452838,
+    "Rf": 0.1549081157570792,
+    "ExistenceReward": 0.2903225806451613,
+    "OverlapReward": 0.04380509144437015,
+    "RAUC": 0.6037511706396367,
+    "time": 135.74721908569336
+}

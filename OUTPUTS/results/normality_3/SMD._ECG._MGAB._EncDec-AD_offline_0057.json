@@ -1,0 +1,24 @@
+{
+    "model": "EncDec-AD",
+    "online": false,
+    "normality": 3,
+    "datasets": [
+        "SMD/machine-1-1.test.csv@1.out",
+        "ECG/MBA_ECG803_data.out",
+        "MGAB/1.test.out"
+    ],
+    "series_length": 122784,
+    "window": 279,
+    "AUC": 0.43941150576174465,
+    "Precision": 0.02075055187637969,
+    "Recall": 0.0092537901161646,
+    "F": 0.012799564270152507,
+    "Precision@k": 0.0092537901161646,
+    "Rprecision": 0.08411214953271028,
+    "Rrecall": 0.14050793650793653,
+    "Rf": 0.10523034492961132,
+    "ExistenceReward": 0.6428571428571429,
+    "OverlapReward": 0.014920634920634916,
+    "RAUC": 0.5228230958798633,
+    "time": 87.51455521583557
+}

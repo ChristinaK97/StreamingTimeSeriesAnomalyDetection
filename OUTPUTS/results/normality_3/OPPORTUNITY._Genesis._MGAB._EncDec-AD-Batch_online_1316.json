@@ -1,0 +1,24 @@
+{
+    "model": "EncDec-AD-Batch",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out",
+        "Genesis/genesis-anomalies.test.csv@1.out",
+        "MGAB/1.test.out"
+    ],
+    "series_length": 92980,
+    "window": 35,
+    "AUC": 0.9408210995282951,
+    "Precision": 0.8471023427866831,
+    "Recall": 0.8619824341279799,
+    "F": 0.8544776119402985,
+    "Precision@k": 0.8619824341279799,
+    "Rprecision": 0.08934841982052283,
+    "Rrecall": 0.14285714285714285,
+    "Rf": 0.1099375900144023,
+    "ExistenceReward": 0.14285714285714285,
+    "OverlapReward": 0.14285714285714285,
+    "RAUC": 0.6516454133950479,
+    "time": 297.96979689598083
+}

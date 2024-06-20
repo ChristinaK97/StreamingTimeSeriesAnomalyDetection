@@ -1,0 +1,24 @@
+{
+    "model": "SAND",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out",
+        "ECG/MBA_ECG803_data.out",
+        "SMD/machine-1-1.test.csv@1.out"
+    ],
+    "series_length": 128479,
+    "window": 125,
+    "AUC": 0.6740194458065963,
+    "Precision": 0.7765726681127982,
+    "Recall": 0.06828151821476254,
+    "F": 0.1255259467040673,
+    "Precision@k": 0.06828151821476254,
+    "Rprecision": 0.840354555258068,
+    "Rrecall": 0.09342528735632184,
+    "Rf": 0.16815605182987525,
+    "ExistenceReward": 0.13793103448275862,
+    "OverlapReward": 0.08229885057471265,
+    "RAUC": 0.7352423320739438,
+    "time": 97.40692949295044
+}

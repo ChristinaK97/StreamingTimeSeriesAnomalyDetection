@@ -116,7 +116,8 @@ def get_datasets_x_model_pivot_table(df, metrics=None, print_=True, save=True):
     # print(pivot_df.to_string(index=False), "\n")
 
     # Save to Excel
-    pivot_df.columns = ['_'.join(col) if isinstance(col, tuple) else col for col in pivot_df.columns]
+    pivot_df.columns = ['_'.join(col) if isinstance(col, tuple) and 'datasets' not in col
+                        else ''.join(col)  for col in pivot_df.columns]
     if save:
         output_file = Path(f"OUTPUTS/Norm_{int(df['normality'].values[0])}_pivot.xlsx")
         pivot_df.to_excel(output_file, index=False, engine="openpyxl")
@@ -125,21 +126,24 @@ def get_datasets_x_model_pivot_table(df, metrics=None, print_=True, save=True):
 
 
 
-def make_boxplot(df):
+def make_boxplot(df, figure_name = "", metrics = None):
     sns.set_theme(style="darkgrid")
     fig, axes = plt.subplots(1, 4, figsize=(13, 4.5))
+    fig.suptitle(figure_name)
     # Plot each metric
-    metrics = ['AUC', 'F', 'Recall', 'Precision']
-    titles = ['AUC', 'F1 Score', 'Recall', 'Precision']
+    if metrics is None:
+        metrics = ['AUC', 'F', 'Recall', 'Precision']
+    titles = [metric if metric != 'F' else 'F1 Score' for metric in metrics]
     model_order = ['SAND', 'Offline-EncDec-AD', 'EncDec-AD-Batch', 'Online-EncDec-AD', 'AE-LSTM']
     model_short_names = ['SAND', 'Offline', 'Batch', 'Online', 'AE-LSTM']
+    palette = sns.color_palette('deep',5)
 
     for ax, metric, title in zip(axes, metrics, titles):
 
         # TODO: should drop 0 values for plot? (SAND results are the most problematic -> completely different plot)
-        df_without_zeros = df[df[metric] > 0.]
+        df_without_zeros = df[(df[metric] > 0.) | (df['model'] != 'SAND')]
 
-        sns.boxplot(x='model', y=metric, data=df, ax=ax, order=model_order, width=0.8, hue='model', palette=sns.color_palette('deep',5))
+        sns.boxplot(x='model', y=metric, data=df_without_zeros, ax=ax, order=model_order, width=0.8, palette=palette)
         ax.set_title(title)
         ax.set_xlabel('Model')
         ax.set_ylabel(None)
@@ -148,59 +152,8 @@ def make_boxplot(df):
 
     # Adjust layout
     plt.tight_layout()
-    plt.show()
-
-
-def correlations(pivot_mat):
-    anomaly_ratios = [
-        5.37,
-        11.13,
-        4.65,
-        0.14,
-        0.31,
-        0.46,
-        0.78,
-        0.20,
-        1.40,
-        9.84,
-        2.23,
-        21.23,
-        9.46,
-        28.99,
-        12.78,
-        0.14,
-        None
-    ]
-    rc = [
-        2.38,
-        2.02,
-        8.33,
-        27.24,
-        2.28,
-        3.33,
-        10.67,
-        27.64,
-        7.19,
-        2.67,
-        2.94,
-        2.53,
-        3.39,
-        7.14,
-        2.38,
-        3.25,
-        None
-    ]
-    pivot_mat['anomaly ratio'] = anomaly_ratios
-    pivot_mat['rc'] = rc
-
-    correlation_matrix = pivot_mat.corr()[['anomaly ratio', 'rc']]
-    print(correlation_matrix)
-
-    plt.figure(figsize=(12,10))  # Adjust the figure size as needed
-    sns.heatmap(correlation_matrix.transpose(), annot=True, cmap='coolwarm', vmin=-2, vmax=2, fmt='.2f', linewidths=.5, square=True)
-    plt.tick_params(axis='x', rotation=20)
-    plt.title('Correlation Heatmap')
-    plt.show()
+    plt.ion()
+    plt.show(block=False)
 
 
 # ============================================================================================================
@@ -218,7 +171,7 @@ def prepare_results_df(normality, num_of_models = 4, filter_results = False):
 
 
 if __name__ == "__main__":
-    df = prepare_results_df(3, 5, False)
+    df = prepare_results_df(1, 5, False)
     print_sep_df_per_dataset(df)
     pivot_map = get_datasets_x_model_pivot_table(df)
     make_boxplot(df)

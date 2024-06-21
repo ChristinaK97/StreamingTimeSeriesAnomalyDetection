@@ -1,0 +1,35 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "SVDB/801.test.csv@1.out",
+        "Occupancy/room-occupancy.train.csv@3.out",
+        "MITDB/100.test.csv@1.out"
+    ],
+    "series_length": 108143,
+    "window": 146,
+    "AUC": 0.5124263320864436,
+    "Precision": 0.35468631897203323,
+    "Recall": 0.06782539567825396,
+    "F": 0.11387490141357763,
+    "Precision@k": 0.06782539567825396,
+    "Rprecision": 0.4048622022696096,
+    "Rrecall": 0.22437551037660206,
+    "Rf": 0.28873400764367124,
+    "ExistenceReward": 0.8783269961977186,
+    "OverlapReward": 0.06088763892132291,
+    "RAUC": 0.554910332641273,
+    "Accuracy": 0.7273550301932931,
+    "confusion_matrix": [
+        [
+            76054,
+            3415
+        ],
+        [
+            25797,
+            1877
+        ]
+    ],
+    "time": 6137.881100893021
+}

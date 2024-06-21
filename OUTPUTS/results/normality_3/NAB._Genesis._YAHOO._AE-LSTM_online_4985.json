@@ -1,0 +1,35 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out",
+        "Genesis/genesis-anomalies.test.csv@1.out",
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 20139,
+    "window": 125,
+    "AUC": 0.6919126578617565,
+    "Precision": 0.07900677200902935,
+    "Recall": 0.4268292682926829,
+    "F": 0.13333333333333333,
+    "Precision@k": 0.0,
+    "Rprecision": 0.015488050033504579,
+    "Rrecall": 0.38318267098754905,
+    "Rf": 0.029772702469984855,
+    "ExistenceReward": 0.5714285714285714,
+    "OverlapReward": 0.33612119587729344,
+    "RAUC": 0.5862999906896804,
+    "Accuracy": 0.9524531062228957,
+    "confusion_matrix": [
+        [
+            18159,
+            816
+        ],
+        [
+            94,
+            70
+        ]
+    ],
+    "time": 870.9370787143707
+}

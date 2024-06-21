@@ -1,0 +1,35 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "OPPORTUNITY/S1-ADL1.test.csv@16.out",
+        "Genesis/genesis-anomalies.test.csv@1.out",
+        "YAHOO/Yahoo_A1real_1_data.out"
+    ],
+    "series_length": 67640,
+    "window": 35,
+    "AUC": 0.49392940183421624,
+    "Precision": 0.012053033346725592,
+    "Recall": 0.025423728813559324,
+    "F": 0.01635322976287817,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0035536651798049974,
+    "Rrecall": 0.5666709707526035,
+    "Rf": 0.007063037162107193,
+    "ExistenceReward": 0.8571428571428571,
+    "OverlapReward": 0.49405299915504,
+    "RAUC": 0.5052240622196073,
+    "Accuracy": 0.945843337334934,
+    "confusion_matrix": [
+        [
+            63001,
+            2459
+        ],
+        [
+            1150,
+            30
+        ]
+    ],
+    "time": 1633.917266368866
+}

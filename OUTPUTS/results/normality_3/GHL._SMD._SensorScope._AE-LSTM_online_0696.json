@@ -1,0 +1,35 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "GHL/01_Lev_fault_Temp_corr_seed_11_vars_23.test.csv@4.out",
+        "SMD/machine-1-1.test.csv@1.out",
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 108032,
+    "window": 125,
+    "AUC": 0.5131928053516458,
+    "Precision": 0.1245688003066309,
+    "Recall": 0.0491307634164777,
+    "F": 0.0704683434518647,
+    "Precision@k": 0.0491307634164777,
+    "Rprecision": 0.2784313725490196,
+    "Rrecall": 0.09643533208754301,
+    "Rf": 0.1432542370034548,
+    "ExistenceReward": 0.4375,
+    "OverlapReward": 0.011169165109428756,
+    "RAUC": 0.5055590309190878,
+    "Accuracy": 0.9198931160774347,
+    "confusion_matrix": [
+        [
+            98133,
+            2284
+        ],
+        [
+            6290,
+            325
+        ]
+    ],
+    "time": 4118.564162015915
+}

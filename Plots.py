@@ -186,7 +186,7 @@ def confusion_mat(conf_mat: List[List[int]]):
     df_cm = pd.DataFrame(conf_mat, index=['True Negative', 'True Positive'],
                          columns=['Predicted Negative', 'Predicted Positive'])
 
-    plt.figure(figsize=(10, 7))
+    plt.figure(figsize=(7, 7))
     sns.set(font_scale=1.4)  # for label size
     sns.heatmap(df_cm, annot=True, annot_kws={"size": 16}, fmt='g', cmap='Blues')
 
@@ -200,10 +200,13 @@ def confusion_mat(conf_mat: List[List[int]]):
 
 normality = 3
 results_df = prepare_results_df(normality, 5, False)
+avg_values = results_df[results_df['datasets']=='Average']
+print(avg_values)
 results_df = results_df[results_df['datasets']!='Average']
 
+print(results_df[results_df['model'] == 'Online-EncDec-AD'])
+
 pivot_map = get_datasets_x_model_pivot_table(results_df, save=False, print_=False).reset_index(drop=True)
-print(pivot_map)
 
 data_info = get_1_normality_info(ALL_SETS, 100000) if normality == 1 else \
             get_k_normality_info(ALL_SETS, pivot_map[['datasets']].values.flatten(), 50000, True, False)
@@ -222,9 +225,17 @@ else:
     make_boxplot(merged_results[merged_results['rate diff'] < 0], "Series where the anomaly rate decreases")
     make_boxplot(merged_results[merged_results['rate diff'] > 0], "Series where the anomaly rate increases")
 
+    sorted_merged_pivot = pd.concat([
+        merged_pivot[merged_pivot['rate diff'] < 0].sort_values(by=['rate diff'], ascending=False),
+        merged_pivot[merged_pivot['rate diff'] > 0].sort_values(by=['rate diff'])
+    ])
+    print(sorted_merged_pivot)
+    sorted_merged_pivot.to_excel("norm3pivot.xlsx", index=False, engine="openpyxl")
+
+
+
 correlations(merged_pivot, n_characteristics)
 
 # conf_mat = merged_results[(merged_results['datasets']=='Occupancy_SVDB') & (merged_results['model']=='Online-EncDec-AD')]['confusion_matrix'].values[0]
-# confusion_mat(conf_mat)
 
 plt.pause(1200)

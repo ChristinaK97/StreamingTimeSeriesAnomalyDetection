@@ -1,0 +1,35 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "MGAB/1.test.out",
+        "ECG/MBA_ECG803_data.out",
+        "SMD/machine-1-1.test.csv@1.out"
+    ],
+    "series_length": 128479,
+    "window": 49,
+    "AUC": 0.5725378384273576,
+    "Precision": 0.15146733985484379,
+    "Recall": 0.18901358535144713,
+    "F": 0.16817027240080581,
+    "Precision@k": 0.0,
+    "Rprecision": 0.05692105056386547,
+    "Rrecall": 0.2663062599666444,
+    "Rf": 0.09379425311651964,
+    "ExistenceReward": 0.8809523809523809,
+    "OverlapReward": 0.1126447297202103,
+    "RAUC": 0.5687363445953015,
+    "Accuracy": 0.9255014551416312,
+    "confusion_matrix": [
+        [
+            117022,
+            5378
+        ],
+        [
+            4119,
+            960
+        ]
+    ],
+    "time": 2551.955908060074
+}

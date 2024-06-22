@@ -1,0 +1,35 @@
+{
+    "model": "AE-LSTM",
+    "online": true,
+    "normality": 3,
+    "datasets": [
+        "SMD/machine-1-1.test.csv@1.out",
+        "ECG/MBA_ECG803_data.out",
+        "IOPS/KPI-1c6d7a26-1f1a-3321-bb4d-7a9d969ec8f0.test.out"
+    ],
+    "series_length": 128479,
+    "window": 279,
+    "AUC": 0.5698091160265253,
+    "Precision": 0.17472401979444233,
+    "Recall": 0.17509059698645812,
+    "F": 0.17490711631894829,
+    "Precision@k": 0.0,
+    "Rprecision": 0.08445922599935615,
+    "Rrecall": 0.2841028590835731,
+    "Rf": 0.13020931101474345,
+    "ExistenceReward": 0.8620689655172413,
+    "OverlapReward": 0.139611332475156,
+    "RAUC": 0.5683586411891367,
+    "Accuracy": 0.9320593980184971,
+    "confusion_matrix": [
+        [
+            117900,
+            4336
+        ],
+        [
+            4325,
+            918
+        ]
+    ],
+    "time": 4978.297566890717
+}

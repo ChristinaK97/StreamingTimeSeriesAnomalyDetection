@@ -1,5 +1,6 @@
 import warnings
 
+import numpy as np
 from matplotlib import pyplot as plt
 
 from ResultsAnalysis import prepare_results_df, get_datasets_x_model_pivot_table, make_boxplot
@@ -204,8 +205,6 @@ avg_values = results_df[results_df['datasets']=='Average']
 print(avg_values)
 results_df = results_df[results_df['datasets']!='Average']
 
-print(results_df[results_df['model'] == 'Online-EncDec-AD'])
-
 pivot_map = get_datasets_x_model_pivot_table(results_df, save=False, print_=False).reset_index(drop=True)
 
 data_info = get_1_normality_info(ALL_SETS, 100000) if normality == 1 else \
@@ -221,6 +220,7 @@ make_boxplot(results_df, "Performance across all datasets")
 if normality == 1:
     make_boxplot(merged_results[merged_results['anomaly rate'] < 3],  "Series with low anomaly rate (<3)")
     make_boxplot(merged_results[merged_results['anomaly rate'] >= 3], "Series with high anomaly rate (>=3)")
+    pass
 else:
     make_boxplot(merged_results[merged_results['rate diff'] < 0], "Series where the anomaly rate decreases")
     make_boxplot(merged_results[merged_results['rate diff'] > 0], "Series where the anomaly rate increases")
@@ -229,8 +229,6 @@ else:
         merged_pivot[merged_pivot['rate diff'] < 0].sort_values(by=['rate diff'], ascending=False),
         merged_pivot[merged_pivot['rate diff'] > 0].sort_values(by=['rate diff'])
     ])
-    print(sorted_merged_pivot)
-    sorted_merged_pivot.to_excel("norm3pivot.xlsx", index=False, engine="openpyxl")
 
 
 
@@ -238,4 +236,91 @@ correlations(merged_pivot, n_characteristics)
 
 # conf_mat = merged_results[(merged_results['datasets']=='Occupancy_SVDB') & (merged_results['model']=='Online-EncDec-AD')]['confusion_matrix'].values[0]
 
+
+def make_runtime_boxplot(df):
+    sns.set_theme(style="darkgrid")
+    fig, axes = plt.subplots(1, 3, figsize=(10, 6))  # Create subplots for normality 1, 2, 3
+    normalities = [1.0, 2.0, 3.0]
+    titles = ['Normality 1', 'Normality 2', 'Normality 3']
+    model_order = ['SAND', 'Offline-EncDec-AD', 'EncDec-AD-Batch','Online-EncDec-AD', 'AE-LSTM']
+    model_short_names = ['SAND', 'Offline', 'Batch', 'Online', 'AE-LSTM']
+    palette = sns.color_palette('deep', 5)
+
+    for i, (ax, normality, title) in enumerate(zip(axes, normalities, titles)):
+        # Filter the dataframe for the current normality
+        df_normality = df[df['normality'] == normality]
+
+        # Create the boxplot
+        sns.boxplot(x='model', y='time', data=df_normality, ax=ax, order=model_order,
+                    width=0.8, palette=palette, showfliers=False)
+
+        # Set title and labels
+        ax.set_title(title)
+        ax.set_xlabel('Model')
+        ax.set_ylabel('Time (s)' if i == 0 else None)
+        ax.tick_params(axis='x', rotation=20)
+        ax.set_xticklabels(model_short_names)
+
+    # Adjust layout and show the plot
+    plt.tight_layout()
+    plt.ion()
+    plt.show(block=False)
+
+def make_avg_runtime_heatmap(avg_runtimes):
+    results = {f"normality {k}": [] for k in range(1, 4)}
+    model_order = ['SAND', 'Offline-EncDec-AD', 'EncDec-AD-Batch', 'Online-EncDec-AD', 'AE-LSTM']
+    model_short_names = ['SAND', 'Offline', 'Batch', 'Online', 'AE-LSTM']
+
+    for normality in results.keys():
+        for model in model_order:
+            df = avg_runtimes[avg_runtimes['model']== model]
+            value = round(float(df[df['normality'] == float(normality[-1])]['time'].values[0]), 2)
+            results[normality].append(value)
+
+    results = pd.DataFrame(results.values(), columns=model_order, index=results.keys()).transpose()
+
+    annot = results.copy()
+    for normality in results.columns:
+        values = results[normality].copy()
+        for i in range(len(model_order)):
+            min_model = np.argmin(values)
+            results[normality].iloc[min_model] = i
+            values[min_model] = float('inf')
+
+    plt.figure()
+    sns.heatmap(results, cmap=sns.dark_palette("#69d", reverse=True, as_cmap=True),
+                annot=annot, fmt='.1f', square=True,
+                yticklabels=model_short_names, xticklabels=[1, 2, 3])
+    print(annot)
+    plt.title('Average Runtime Heatmap')
+    plt.ylabel('Model')
+    plt.xlabel('Normality')
+    plt.ion()
+    plt.show(block=False)
+    plt.savefig('time heatmap.png', dpi=300)
+
+
+def runtime_analysis():
+    runtimes, avg_runtimes = [], []
+    for normality in range(1, 4):
+        norm_results_df = prepare_results_df(normality, 5, True)
+        norm_runtime = norm_results_df[['datasets', 'normality', 'model', 'time']]
+
+        norm_avg_runtime = norm_runtime[norm_runtime['datasets'] == 'Average']
+        norm_runtime = norm_runtime[norm_runtime['datasets'] != 'Average']
+
+        runtimes.append(norm_runtime)
+        avg_runtimes.append(norm_avg_runtime)
+
+    runtimes = pd.concat(runtimes)
+    avg_runtimes = pd.concat(avg_runtimes)
+
+    print(runtimes)
+    print(avg_runtimes)
+    make_runtime_boxplot(runtimes)
+    make_avg_runtime_heatmap(avg_runtimes)
+
+
+
+runtime_analysis()
 plt.pause(1200)

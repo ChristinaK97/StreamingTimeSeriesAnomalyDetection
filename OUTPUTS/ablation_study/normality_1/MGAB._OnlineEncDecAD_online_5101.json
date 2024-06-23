@@ -1,0 +1,53 @@
+{
+    "model": "OnlineEncDecAD",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "MGAB/1.test.out"
+    ],
+    "series_length": 80000,
+    "window": 49,
+    "AUC": 0.5322305764411028,
+    "Precision": 0.004623513870541612,
+    "Recall": 0.14,
+    "F": 0.00895140664961637,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0036659877800407333,
+    "Rrecall": 0.192,
+    "Rf": 0.007194604046964776,
+    "ExistenceReward": 0.4,
+    "OverlapReward": 0.13999999999999999,
+    "RAUC": 0.5046012189056851,
+    "Accuracy": 0.9225,
+    "confusion_matrix": [
+        [
+            73772,
+            6028
+        ],
+        [
+            172,
+            28
+        ]
+    ],
+    "time": 77.58972978591919,
+    "ablation": true,
+    "use_increm_learn": false,
+    "use_drift_detect": true,
+    "use_dynamic_thrs": true,
+    "increm_idxs": [],
+    "drift_idxs": [
+        0,
+        400,
+        1203,
+        37583,
+        48838,
+        53661,
+        54062,
+        65116,
+        69336,
+        73154,
+        73555
+    ],
+    "ks_significance": 0.001,
+    "percentile": 92
+}

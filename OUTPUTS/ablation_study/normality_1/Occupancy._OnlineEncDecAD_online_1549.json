@@ -1,0 +1,55 @@
+{
+    "model": "OnlineEncDecAD",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "Occupancy/room-occupancy.train.csv@3.out"
+    ],
+    "series_length": 6515,
+    "window": 125,
+    "AUC": 0.6057761037928762,
+    "Precision": 0.9543726235741445,
+    "Recall": 0.21379897785349233,
+    "F": 0.34933890048712596,
+    "Precision@k": 0.21379897785349233,
+    "Rprecision": 0.9269581056466303,
+    "Rrecall": 0.15096017992569719,
+    "Rf": 0.2596370509434303,
+    "ExistenceReward": 0.5454545454545454,
+    "OverlapReward": 0.0523365885434851,
+    "RAUC": 0.5784818694351775,
+    "Accuracy": 0.8564850345356869,
+    "confusion_matrix": [
+        [
+            5329,
+            12
+        ],
+        [
+            923,
+            251
+        ]
+    ],
+    "time": 89.14500761032104,
+    "ablation": true,
+    "use_increm_learn": true,
+    "use_drift_detect": true,
+    "use_dynamic_thrs": false,
+    "increm_idxs": [
+        3607
+    ],
+    "drift_idxs": [
+        0,
+        802,
+        1203,
+        1604,
+        2206,
+        2607,
+        3611,
+        4012,
+        4413,
+        5216,
+        5617
+    ],
+    "ks_significance": 0.001,
+    "percentile": 92
+}

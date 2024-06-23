@@ -1,0 +1,45 @@
+{
+    "model": "OnlineEncDecAD",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "NAB/NAB_data_Traffic_1.out"
+    ],
+    "series_length": 2000,
+    "window": 91,
+    "AUC": 0.5918818747011,
+    "Precision": 0.22994652406417113,
+    "Recall": 0.2621951219512195,
+    "F": 0.245014245014245,
+    "Precision@k": 0.0,
+    "Rprecision": 0.13655462184873948,
+    "Rrecall": 0.2780487804878049,
+    "Rf": 0.18315742640334182,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 0.0975609756097561,
+    "RAUC": 0.6407143728334581,
+    "Accuracy": 0.8675,
+    "confusion_matrix": [
+        [
+            1692,
+            144
+        ],
+        [
+            121,
+            43
+        ]
+    ],
+    "time": 5.186891555786133,
+    "ablation": true,
+    "use_increm_learn": true,
+    "use_drift_detect": false,
+    "use_dynamic_thrs": true,
+    "increm_idxs": [
+        999
+    ],
+    "drift_idxs": [
+        0
+    ],
+    "ks_significance": 0.001,
+    "percentile": 92
+}

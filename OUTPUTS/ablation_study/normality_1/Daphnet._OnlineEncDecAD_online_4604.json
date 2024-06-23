@@ -1,0 +1,59 @@
+{
+    "model": "OnlineEncDecAD",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "Daphnet/S01R02E0.test.csv@1.out"
+    ],
+    "series_length": 23040,
+    "window": 70,
+    "AUC": 0.4758175802701927,
+    "Precision": 0.044371941272430666,
+    "Recall": 0.08791208791208792,
+    "F": 0.05897658282740676,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.4892375167196542,
+    "Accuracy": 0.8116319444444444,
+    "confusion_matrix": [
+        [
+            18564,
+            2929
+        ],
+        [
+            1411,
+            136
+        ]
+    ],
+    "time": 81.18320870399475,
+    "ablation": true,
+    "use_increm_learn": false,
+    "use_drift_detect": true,
+    "use_dynamic_thrs": true,
+    "increm_idxs": [],
+    "drift_idxs": [
+        0,
+        2209,
+        4821,
+        5825,
+        6628,
+        7029,
+        9038,
+        13258,
+        16875,
+        17276,
+        19084,
+        19485,
+        20087,
+        20488,
+        21291,
+        22094,
+        22495
+    ],
+    "ks_significance": 0.001,
+    "percentile": 92
+}

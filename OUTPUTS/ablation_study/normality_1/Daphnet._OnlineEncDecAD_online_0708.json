@@ -1,0 +1,75 @@
+{
+    "model": "OnlineEncDecAD",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "Daphnet/S01R02E0.test.csv@1.out"
+    ],
+    "series_length": 23040,
+    "window": 70,
+    "AUC": 0.4819048134340938,
+    "Precision": 0.0273972602739726,
+    "Recall": 0.023270846800258566,
+    "F": 0.025166025865082136,
+    "Precision@k": 0.023270846800258566,
+    "Rprecision": 0.0518018018018018,
+    "Rrecall": 0.2056581037552112,
+    "Rf": 0.08275820894607369,
+    "ExistenceReward": 1.0,
+    "OverlapReward": 0.007072629694013987,
+    "RAUC": 0.4898635766344821,
+    "Accuracy": 0.8789496527777778,
+    "confusion_matrix": [
+        [
+            20215,
+            1278
+        ],
+        [
+            1511,
+            36
+        ]
+    ],
+    "time": 138.84583282470703,
+    "ablation": true,
+    "use_increm_learn": true,
+    "use_drift_detect": true,
+    "use_dynamic_thrs": false,
+    "increm_idxs": [
+        999,
+        1999,
+        3209,
+        4209,
+        5821,
+        8029,
+        9029,
+        10038,
+        11038,
+        12038,
+        13038,
+        14258,
+        15258,
+        16258,
+        18276
+    ],
+    "drift_idxs": [
+        0,
+        2209,
+        4821,
+        5825,
+        6628,
+        7029,
+        9038,
+        13258,
+        16875,
+        17276,
+        19084,
+        19485,
+        20087,
+        20488,
+        21291,
+        22094,
+        22495
+    ],
+    "ks_significance": 0.001,
+    "percentile": 92
+}

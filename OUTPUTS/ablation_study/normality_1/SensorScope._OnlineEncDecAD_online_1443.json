@@ -1,0 +1,68 @@
+{
+    "model": "OnlineEncDecAD",
+    "online": true,
+    "normality": 1,
+    "datasets": [
+        "SensorScope/stb-2.test.out"
+    ],
+    "series_length": 23643,
+    "window": 13,
+    "AUC": 0.7937688580602792,
+    "Precision": 0.37156166814551905,
+    "Recall": 0.7204301075268817,
+    "F": 0.4902678179423387,
+    "Precision@k": 0.0,
+    "Rprecision": 0.0,
+    "Rrecall": 0.0,
+    "Rf": 0.0,
+    "ExistenceReward": 0.0,
+    "OverlapReward": 0.0,
+    "RAUC": 0.798957730211922,
+    "Accuracy": 0.852683669585078,
+    "confusion_matrix": [
+        [
+            18485,
+            2833
+        ],
+        [
+            650,
+            1675
+        ]
+    ],
+    "time": 109.99206638336182,
+    "ablation": true,
+    "use_increm_learn": false,
+    "use_drift_detect": true,
+    "use_dynamic_thrs": true,
+    "increm_idxs": [],
+    "drift_idxs": [
+        0,
+        400,
+        801,
+        1202,
+        1603,
+        2004,
+        2405,
+        2806,
+        3207,
+        3608,
+        4009,
+        4410,
+        4811,
+        5212,
+        5613,
+        6014,
+        6415,
+        6816,
+        7418,
+        7819,
+        8220,
+        8621,
+        9223,
+        9624,
+        19070,
+        21079
+    ],
+    "ks_significance": 0.001,
+    "percentile": 92
+}

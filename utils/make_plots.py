@@ -95,8 +95,6 @@ def runtime_analysis():
     runtimes = pd.concat(runtimes)
     avg_runtimes = pd.concat(avg_runtimes)
 
-    print(runtimes)
-    print(avg_runtimes)
     make_runtime_boxplot(runtimes)
     make_avg_runtime_heatmap(avg_runtimes)
 
@@ -212,9 +210,44 @@ def get_ablation_study_results():
     results = pd.concat([ablation_results, default_results])\
                 .sort_values(by=['normality','datasets','model'])
     avg = results.groupby(by=['normality','model']).mean().reset_index()
-    print("Average:\n", avg, sep="")
+    # print("Average:\n", avg, sep="")
     return results, avg
 
+
+def analyse_abl_study_trends(abl_study_res:pd.DataFrame):
+    metrics = ['AUC','F', 'Recall', 'Precision']
+    diffs_from_default = []
+    models = ['w/o DAT', 'w/o IL', 'w/o CDD']
+    for model in models:
+        diff_from_default = abl_study_res[abl_study_res['model']=='Default'][metrics].reset_index(drop=True) \
+                            - abl_study_res[abl_study_res['model']==model][metrics].reset_index(drop=True)
+        diff_from_default = diff_from_default * 100
+        diff_from_default['model'] = model
+        diff_from_default[['datasets', 'normality']] = abl_study_res[abl_study_res['model']=='Default'][['datasets','normality']].reset_index(drop=True)
+        diff_from_default = diff_from_default[['model','datasets','normality'] + [c for c in diff_from_default if c not in ['model','datasets','normality']]]
+        diffs_from_default.append(diff_from_default)
+        print(f"\nVariant = {model}\nDistro of the difference between Default_Model[metric] and {model}[metric]:\n{diff_from_default[metrics].describe()}")
+
+    diffs_from_default = pd.concat(diffs_from_default)
+    melted_df = diffs_from_default.melt(id_vars=['datasets', 'normality', 'model'], value_vars=metrics,
+                        var_name='Metric', value_name='Difference')
+
+    make_facet_grid(melted_df[melted_df["Metric"]=='F'], "model", "Metric", ['F'])
+    make_facet_grid(melted_df, "Metric", "model", ['w/o DAT', 'w/o IL', 'w/o CDD'])
+
+
+
+def make_facet_grid(melted_df, col, row, row_order):
+    g = sns.FacetGrid(melted_df, col=col, row=row, margin_titles=True,
+                      sharex=False, sharey=False,
+                      row_order=row_order)
+    g.map(sns.histplot, "Difference", kde=True, bins=20)
+    g.set_axis_labels("Difference from Default (%)", "Frequency (# Series)")
+    g.set_titles(col_template="{col_name}", row_template="{row_name}")
+    plt.tight_layout()
+    plt.ion()
+    plt.show(block=False)
+    plt.savefig(f"OUTPUTS/figures/hist ablation col {col}. row {row}.png", dpi=300)
 
 
 
@@ -224,7 +257,6 @@ def show_ablation_study_results_for_normality(abl_study_res, normality):
     boxplots_comparing_models(norm_results, "Ablation Study", ablation_results=True)
     ablation_study_heatmap(norm_results, 'AUC')
     ablation_study_heatmap(norm_results, 'F')
-
 
 
 
@@ -258,6 +290,7 @@ def ablation_study_heatmap(abl_study_res, metric):
             rank -= max_value_count
 
     plt.figure()
+
 
     def abbreviate_datasets(datasets):
         return '_'.join([ si[ : (min(6,len(si)) if len(datasets)>12 else len(si)) ] for si in datasets.split('_')])

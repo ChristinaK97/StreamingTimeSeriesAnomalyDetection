@@ -6,11 +6,13 @@ Mining from Massive Datasets Assignment
 
 ### Project Directory Structure:
 StreamingTimeSeriesAnomalyDetection (base directory) <br>
-|-- TSB-UAD (cloned from the original [github repo](https://github.com/TheDatumOrg/TSB-UAD/)) <br>
-|-- TSB-UAD-Public ([public datasets](https://www.thedatum.org/datasets/TSB-UAD-Public.zip) from the TSB benchmark) <br>
-|-- EncDec-AD (contains files copied from the [original repo](https://github.com/KDD-OpenSource/DeepADoTS/tree/master) - modified) <br>
-|-- redsofa_online_ae_lstm (cloned from the [original repo](https://github.com/redsofa/streaming_anomaly_detection)) <br>
-|-- StreamingAnomalyDetectionNotebook.ipynb (draft project notebook) <br>
+|-- __StreamingAnomalyDetectionNotebook.ipynb__: Project notebook containing functions for training and evaluating the AD models, as well as results analysis and plots. <br>
+|-- __utils__: Package containing functions for reading datasets, handling and plotting results. <br>
+|-- __TSB-UAD__: Evaluation benchmark cloned from its original [github repo](https://github.com/TheDatumOrg/TSB-UAD/) <br>
+|-- __TSB-UAD-Public__:[Public datasets](https://www.thedatum.org/datasets/TSB-UAD-Public.zip) from the TSB benchmark <br>
+|-- __EncDec-AD__: Files copied from the [original repo](https://github.com/KDD-OpenSource/DeepADoTS/tree/master) (modified) <br>
+|-- __redsofa_online_ae_lstm__: AE-LSTM model cloned from its [original repo](https://github.com/redsofa/streaming_anomaly_detection) <br>
+|-- __OUTPUTS__: Contains json files with the results of AD models (results are grouped by dataset normality)
 
 
 ### TSB-UAD
@@ -30,14 +32,21 @@ python -m ipykernel install --user --name=TSB
 
 
 ### EncDec-AD
-- Paper: [Long short term memory networks for anomaly detection in time series](https://www.elen.ucl.ac.be/Proceedings/esann/esannpdf/es2015-56), ESANN 2015 
+- Offline baseline
+- Paper: [LSTM-based Encoder-Decoder for Multi-sensor Anomaly Detection](https://arxiv.org/abs/1607.00148)
 - Original Repository: [DeepADoTS](https://github.com/KDD-OpenSource/DeepADoTS/tree/master)
 - Requirements: <br>
   ```
     pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu116
   ```
+  
+### EncDec-AD-Batch & OnlineEncDec-AD
+- Streaming variants of the baseline EncDec-AD model, originally proposed for offline settings
+- The code of these models can be found in the __StreamingAnomalyDetectionNotebook.ipynb__ notebook in the base directory of this project.
+
     
 ### Online AE-LSTM
+- Additional online baseline
 - Paper [An LSTM Encoder-Decoder Approach for Unsupervised Online Anomaly Detection in Machine Learning Packages for Streaming Data](https://ieeexplore.ieee.org/document/10020872)
 - Original Repository: [streaming_anomaly_detection](https://github.com/redsofa/streaming_anomaly_detection)
 - Requirements: <br>

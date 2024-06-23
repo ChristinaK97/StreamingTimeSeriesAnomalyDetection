@@ -155,7 +155,6 @@ def make_avg_runtime_heatmap(avg_runtimes):
     sns.heatmap(results, cmap=sns.dark_palette("#69d", reverse=True, as_cmap=True),
                 annot=annot, fmt='.1f', square=True, cbar=False,
                 yticklabels=model_short_names, xticklabels=[1, 2, 3])
-    print(annot)
     plt.title('Average Runtime Heatmap')
     plt.ylabel('Model')
     plt.xlabel('Normality')
@@ -179,7 +178,8 @@ def correlations(pivot_mat, n_characterists):
     max_value = corr_mat.max().max()
     corr_mat.columns = corr_mat.columns.str.replace('EncDec-AD', '')
     corr_mat.index = corr_mat.index.str.replace('EncDec-AD', '')
-    sns.heatmap(corr_mat, annot=True, cmap='coolwarm', vmin=min_value, vmax=max_value, fmt='.2f', linewidths=.5, square=n_characterists<=5)
+    sns.heatmap(corr_mat, annot=True, cmap='coolwarm', vmin=min_value, vmax=max_value, fmt='.2f',
+                linewidths=.5, square=n_characterists<=5, cbar=False)
     plt.tick_params(axis='x', rotation=20)
     plt.title('Correlation Heatmap')
     plt.ion()
@@ -253,11 +253,12 @@ def make_facet_grid(melted_df, col, row, row_order):
 
 def show_ablation_study_results_for_normality(abl_study_res, normality):
     norm_results = abl_study_res[abl_study_res['normality'] == normality]
-    print_sep_df_per_dataset(norm_results)
+    # print_sep_df_per_dataset(norm_results)
     boxplots_comparing_models(norm_results, "Ablation Study", ablation_results=True)
     ablation_study_heatmap(norm_results, 'AUC')
     ablation_study_heatmap(norm_results, 'F')
-
+    ablation_study_heatmap(norm_results, 'Recall')
+    ablation_study_heatmap(norm_results, 'Precision')
 
 
 def ablation_study_heatmap(abl_study_res, metric):

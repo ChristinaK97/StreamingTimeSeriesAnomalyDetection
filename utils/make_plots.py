@@ -1,3 +1,4 @@
+import re
 import warnings
 
 import numpy as np
@@ -56,6 +57,7 @@ def boxplots_comparing_models(df, figure_name ="", metrics = None, ablation_resu
     plt.tight_layout()
     plt.ion()
     plt.show(block=False)
+    plt.savefig(f"OUTPUTS/figures/boxplot {re.sub(r'[^A-Za-z0-9_ ]', '', figure_name)} abl {str(ablation_results)}.png", dpi=300)
 
 
 def confusion_mat(conf_mat: List[List[int]]):
@@ -71,6 +73,7 @@ def confusion_mat(conf_mat: List[List[int]]):
     plt.ylabel('Gold Labels')
     plt.ion()
     plt.show(block=False)
+    plt.savefig(f"OUTPUTS/figures/conf mat {conf_mat[0][0]} {conf_mat[0][0]} {conf_mat[1][0]} {conf_mat[1][1]}.png", dpi=300)
 
 
 # ===========================================================================================================
@@ -126,6 +129,7 @@ def make_runtime_boxplot(df):
     plt.tight_layout()
     plt.ion()
     plt.show(block=False)
+    plt.savefig(f"OUTPUTS/figures/boxplot time.png", dpi=300)
 
 
 def make_avg_runtime_heatmap(avg_runtimes):
@@ -159,7 +163,7 @@ def make_avg_runtime_heatmap(avg_runtimes):
     plt.xlabel('Normality')
     plt.ion()
     plt.show(block=False)
-    # plt.savefig('time heatmap.png', dpi=300)
+    plt.savefig(f"OUTPUTS/figures/heatmap time.png", dpi=300)
 
 
 
@@ -182,6 +186,7 @@ def correlations(pivot_mat, n_characterists):
     plt.title('Correlation Heatmap')
     plt.ion()
     plt.show(block=False)
+    plt.savefig(f"OUTPUTS/figures/correlations n_charact {n_characterists}.png", dpi=300)
 
 
 
@@ -253,6 +258,11 @@ def ablation_study_heatmap(abl_study_res, metric):
             rank -= max_value_count
 
     plt.figure()
+
+    def abbreviate_datasets(datasets):
+        return '_'.join([ si[ : (min(6,len(si)) if len(datasets)>12 else len(si)) ] for si in datasets.split('_')])
+    results.columns = results.columns.map(abbreviate_datasets)
+
     sns.heatmap(results, cmap=sns.dark_palette("#69d", reverse=True, as_cmap=True),
                 annot=annot, fmt='.2f', square=True, cbar=False)
     plt.xticks(rotation=60)
@@ -260,6 +270,7 @@ def ablation_study_heatmap(abl_study_res, metric):
     plt.tight_layout()
     plt.ion()
     plt.show(block=False)
+    plt.savefig(f"OUTPUTS/figures/heatmap ablation {metric}.png", dpi=300)
 
 
 # ===========================================================================================================

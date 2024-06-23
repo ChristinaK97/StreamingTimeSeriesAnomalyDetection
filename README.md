@@ -1,12 +1,12 @@
 # StreamingTimeSeriesAnomalyDetection
 Mining from Massive Datasets Assignment
 
-### REPORT DOCUMENT LINK
-[Report](https://aristotleuniversity-my.sharepoint.com/:w:/g/personal/kchristi_office365_auth_gr/ETiycbkhKl5PrxVD0GtVZS8BLHUS7wqk7581xY9O2Ul1uA?e=7KmeR6)
 
 ### Project Directory Structure:
 StreamingTimeSeriesAnomalyDetection (base directory) <br>
 |-- __StreamingAnomalyDetectionNotebook.ipynb__: Project notebook containing functions for training and evaluating the AD models, as well as results analysis and plots. <br>
+|-- __StreamingAnomalyDetectionNotebook.html__: HTML version of the notebook <br>
+|-- __Streaming Time Series Anomaly Detection Project 2 Report__ in pdf and docx formats <br>
 |-- __utils__: Package containing functions for reading datasets, handling and plotting results. <br>
 |-- __TSB-UAD__: Evaluation benchmark cloned from its original [github repo](https://github.com/TheDatumOrg/TSB-UAD/) <br>
 |-- __TSB-UAD-Public__:[Public datasets](https://www.thedatum.org/datasets/TSB-UAD-Public.zip) from the TSB benchmark <br>
